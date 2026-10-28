@@ -346,14 +346,6 @@ body.view-poster .hero .view-picker {{
   right: 36px;
   z-index: 10;
 }}
-@media (max-width: 768px) {{
-  body.view-poster .hero .view-picker {{
-    top: 12px;
-    right: 14px;
-    transform: scale(1.8);
-    transform-origin: top right;
-  }}
-}}
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
 body.view-adaptive {{
