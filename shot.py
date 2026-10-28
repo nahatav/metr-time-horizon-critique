@@ -33,6 +33,7 @@ with sync_playwright() as p:
     over = pg.evaluate("""() => [...document.querySelectorAll('body')].filter(e=>e.scrollHeight>e.clientHeight+1).map(e=>e.className+' '+e.scrollHeight+'>'+e.clientHeight)""")
     print("overflow:", over)
     pg.screenshot(path="preview.png")
+    pg.screenshot(path="poster.png")
     
     if "--pdf" in sys.argv:
         pg.pdf(path="METR_time_horizon_critique.pdf", width="1280px", height="720px", print_background=True)
