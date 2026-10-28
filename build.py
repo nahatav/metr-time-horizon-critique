@@ -137,22 +137,22 @@ chan_rows = "".join(f'<div class="lr c">{GL[k]}<span class="ln">{n}</span><span 
 def item(code, kind, head, body):
     return f'<div class="it"><span class="tg in {kind}">{code}</span><div><h4>{head}</h4><p>{body}</p></div></div>'
 STR = "".join([
- item("S1", "s", "Log scale makes doubling a straight line",
-      "Steady growth reads as a steady slope, through position on a common scale, the most accurate channel (L4). Ratios also fit Weber’s law (L4)."),
+ item("S1", "s", "Log scale makes doubling linear",
+      "Steady doubling becomes a steady slope, read by position on a common scale, the most accurate channel (L4). Equal ratios get equal distances, as Weber’s law suggests (L4)."),
  item("S2", "s", "Example tasks give the axis meaning",
-      "“Train classifier” at about an hour turns minutes into kinds of work, a conceptual unit (data models, L2)."),
+      "“Train classifier” near 1 hour maps the physical unit, minutes, onto a conceptual one, kinds of work (data models, L2)."),
  item("S3", "s", "It marks where its data stops",
       "Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2)."),
 ])
 WEAK = "".join([
  item("W1", "w", "Uncertainty is drawn at 20% opacity",
-      "Opus 4.6 reads as 12 h, yet its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (L5). <b>Fix:</b> solid CI bars."),
+      "Opus 4.6 reads as 12 h; its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (figure and ground, L5). <b>Fix:</b> wide CI bars."),
  item("W2", "w", "One straight line hides a bend",
-      "Every frontier model since o3 sits above METR’s line. Continuity (L5) reads it as one pace. <b>Fix:</b> add the recent fit."),
+      "Every model since o3 sits above it. Like Anscombe’s quartet (L1), one summary hides structure; continuity (L5) reads one pace. <b>Fix:</b> a recent fit."),
  item("W3", "w", "“50%” carries the headline",
-      "At 80% success Opus 4.6 drops from 12 h to 70 min, yet the threshold sits only in the title and a rotated label (L4). <b>Fix:</b> plot both."),
- item("W4", "w", "Light and split dots go unexplained",
-      "No key for light green, 10 of 26 models named, two models share one split dot (expressiveness, L2). <b>Fix:</b> key and jitter."),
+      "At 80%, Opus 4.6 falls from 12 h to 70 min, yet the threshold sits in a rotated label that needs attentive reading (L4). <b>Fix:</b> plot both."),
+ item("W4", "w", "Luminance used for a category",
+      "Frontier or not is nominal, but light green is an ordered channel with no key (expressiveness, L2). Six models are half dots. <b>Fix:</b> hue, key, jitter."),
 ])
 
 split_items = lambda h: ['<div class="it">' + x for x in h.split('<div class="it">') if x]
