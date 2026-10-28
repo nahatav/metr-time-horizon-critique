@@ -28,52 +28,40 @@ html,body { margin:0; background:#fff; }
 body { color:#4d5561; font-family:"Instrument Sans",-apple-system,sans-serif;
         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 
-/* Fixed top floating layout toggle pill */
-.view-switch-nav {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* Seamlessly integrated layout toggle */
 .view-picker {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #e6e8eb;
   padding: 3px;
   border-radius: 20px;
   gap: 2px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.06);
 }
 .view-opt {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: none;
   background: transparent;
-  color: #4d5561;
+  border: none;
+  color: #64748b;
   font-family: "Instrument Sans", -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
-  padding: 5px 14px;
+  padding: 4px 13px;
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.15s ease;
   user-select: none;
+  -webkit-user-select: none;
 }
 .view-opt:hover {
-  color: #222a34;
+  color: #0f172a;
 }
 .view-opt.active {
-  background: #222a34;
+  background: #334155;
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.14);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 .view-opt svg {
   flex-shrink: 0;
@@ -161,7 +149,8 @@ body.view-poster .poster-stage {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 56px;
+  padding-top: 16px;
+  padding-bottom: 24px;
   box-sizing: border-box;
   overflow: visible;
 }
@@ -170,6 +159,8 @@ body.view-poster .poster-wrapper {
   margin: 0 auto;
   overflow: hidden;
   flex-shrink: 0;
+  border: 1px solid #000;
+  box-sizing: content-box;
 }
 body.view-poster .page {
   position: absolute;
@@ -179,6 +170,20 @@ body.view-poster .page {
   height: 900px;
   transform-origin: 0 0;
   flex-shrink: 0;
+}
+body.view-poster .hero .view-picker {
+  position: absolute;
+  top: 16px;
+  right: 36px;
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  body.view-poster .hero .view-picker {
+    top: 12px;
+    right: 14px;
+    transform: scale(1.8);
+    transform-origin: top right;
+  }
 }
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
@@ -196,7 +201,6 @@ body.view-adaptive .poster-stage {
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
-  padding-top: 56px !important;
 }
 body.view-adaptive .poster-wrapper {
   width: 100% !important;
@@ -231,9 +235,13 @@ body.view-adaptive .hero {
   background: #f6f7f8 !important;
   border-radius: 14px !important;
   text-align: center !important;
-  padding: 24px 16px 20px !important;
-  margin-top: 8px !important;
+  padding: 20px 16px 20px !important;
+  margin-top: 16px !important;
   box-sizing: border-box !important;
+}
+body.view-adaptive .hero .view-picker {
+  display: inline-flex !important;
+  margin: 0 auto 16px !important;
 }
 body.view-adaptive h1 {
   font-size: clamp(20px, 4.8vw, 27px) !important;
@@ -403,7 +411,7 @@ body.view-adaptive .re svg {
 
 /* Print styles: strict poster page without UI */
 @media print {
-  .view-switch-nav { display: none !important; }
+  .view-picker { display: none !important; }
   body {
     width: 1280px !important;
     height: 720px !important;
@@ -422,6 +430,7 @@ body.view-adaptive .re svg {
     width: 1280px !important;
     height: 720px !important;
     margin: 0 !important;
+    border: none !important;
   }
   .page {
     position: relative !important;
@@ -453,13 +462,13 @@ function fit() {
   // Read actual available client width (immune to unscaled overflow)
   const docW = document.documentElement.clientWidth || window.innerWidth;
   const winH = window.innerHeight;
-  const availW = docW;
-  const availH = winH - 60;
+  const availW = docW - (docW < 800 ? 16 : 40);
+  const availH = winH - 40;
 
   let scale = Math.min(availW / 1600, availH / 900);
-  if (availW < 800) {
-    // On mobile phone portrait, fit width cleanly
-    scale = availW / 1600;
+  if (docW < 800) {
+    // On mobile phone portrait, fit width cleanly with room for border
+    scale = Math.max(0.1, (docW - 16) / 1600);
   }
 
   if (page && wrapper) {
@@ -469,8 +478,7 @@ function fit() {
     wrapper.style.height = (900 * scale) + 'px';
   }
 
-  const heroH = 158 * scale;
-  document.documentElement.style.background = `#fff linear-gradient(#f6f7f8, #f6f7f8) no-repeat top / 100% ${heroH + 56}px`;
+  document.documentElement.style.background = '#fff';
   document.documentElement.style.minHeight = '100vh';
 }
 
@@ -540,7 +548,11 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
-<nav class="view-switch-nav">
+<div class="poster-stage">
+<div class="poster-wrapper">
+<div class="page">
+
+<div class="hero">
   <div class="view-picker" role="radiogroup" aria-label="Layout view selection">
     <button type="button" class="view-opt active" id="opt-adaptive" role="radio" aria-checked="true" onclick="setLayout('adaptive')">
       <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -559,13 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>Poster</span>
     </button>
   </div>
-</nav>
 
-<div class="poster-stage">
-<div class="poster-wrapper">
-<div class="page">
-
-<div class="hero">
   <h1>METR’s Time Horizon Chart Is Easy to Read, and Easy to Overread</h1>
   <div class="authors"><span>Valmik Nahata</span><span>Varun Sinha</span><span>Rishab Kolan</span><span>Rishil Chintalapati</span></div>
   <div class="affil">UC San Diego, DSC 106 Project 2.5 &nbsp;·&nbsp; {vnahata, v1sinha, rkolan, rchintalapati}@ucsd.edu</div>
