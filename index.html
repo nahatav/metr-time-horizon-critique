@@ -23,7 +23,7 @@ h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0
         font-size:12.5px; font-weight:500; text-decoration:none; }
 .btn svg { width:13px; height:13px; }
 
-.fig { position:absolute; left:64px; top:206px; width:800px; height:371px; }
+.fig { position:absolute; left:64px; top:206px; width:800px; height:371px; container-type:inline-size; }
 .fig img { width:100%; height:100%; display:block; mix-blend-mode:multiply; }
 .chbg { position:absolute; background:#f4f5f7; border-radius:10px; }
 .re svg { background:#f4f5f7; border-radius:10px; }
@@ -37,6 +37,7 @@ h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0
 
 .tg { position:absolute; transform:translate(-50%,-50%); height:19px; padding:0 6px; border-radius:4px;
        font:600 10.5px/19px Montserrat,sans-serif; color:#fff; letter-spacing:0.2px; box-shadow:0 0 0 2.5px #f4f5f7; }
+.tg.ch { width:3.5cqw; height:2.375cqw; line-height:2.375cqw; font-size:1.3125cqw; padding:0; text-align:center; border-radius:0.5cqw; box-shadow:0 0 0 0.3cqw #f4f5f7; }
 .tg.s { background:#2e7d32; } .tg.w { background:#b42318; }
 .tg.in { position:static; transform:none; box-shadow:none; justify-self:start; width:26px; padding:0; text-align:center; }
 
@@ -71,9 +72,50 @@ h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0
 .ty { font:500 10.5px Montserrat,sans-serif; color:#4d5561; border:1px solid #d5d9de; border-radius:10px; padding:1px 8px; white-space:nowrap; }
 .gl { display:block; flex:none; }
 .lbl { font-size:10.5px; font-weight:600; letter-spacing:1.1px; text-transform:uppercase; color:#8a929c; margin:0 0 4px; }
+
+/* ---------------- responsive: below 1100px the slide becomes a single flowing column ---------------- */
+@media screen and (max-width: 1099px) {
+  html, body { background:#fff !important; }
+  body { width:auto; height:auto; overflow:visible; zoom:1 !important; box-shadow:none; }
+  .page { zoom:1; width:auto; height:auto; display:flex; flex-direction:column; padding:0 0 40px; }
+  .page > * { position:static !important; left:auto !important; top:auto !important; width:auto !important; height:auto !important; }
+  .chbg { display:none; }
+  .hero { order:0; padding:28px 20px 24px; }
+  h1 { font-size:clamp(22px, 5.4vw, 30px); line-height:1.2; }
+  .authors span { display:inline-block; margin:2px 8px; }
+  .affil { padding:0 8px; }
+  .btns { flex-wrap:wrap; }
+  .page > .fig { position:relative !important; }
+  .fig { order:1; margin:24px 16px 0; aspect-ratio:3420 / 1585; background:#f4f5f7; border-radius:10px; }
+  .fig img { mix-blend-mode:multiply; }
+  .cap { order:2; margin:10px 20px 0; line-height:1.9; }
+  .text { order:3; margin:32px 20px 0; display:flex !important; flex-direction:column; gap:16px; }
+  .text > div:not(.it):not(.sh2) { display:none; }
+  .text .sh2 { text-align:left; margin:0; font-size:21px; }
+  .text .sh2.s { order:0; }
+  .text .it:has(.tg.s) { order:1; }
+  .text .sh2.w { order:2; margin-top:18px; }
+  .text .it:has(.tg.w) { order:3; }
+  .it h4 { font-size:16px; }
+  .it p { font-size:15px; line-height:1.55; }
+  .panel.mc { order:4; margin:44px 20px 0; }
+  .panel.re { order:5; margin:44px 16px 0; }
+  .panel h3 { font-size:21px; text-align:left; padding:0 4px; }
+  .panel .lead { text-align:left; font-size:15px; padding:0 4px; margin-bottom:12px; }
+  .re svg { width:100%; height:auto; }
+  .mcg { margin-top:8px !important; grid-template-columns:1fr !important; row-gap:18px; }
+  .cr, .cr.m { grid-template-columns:32px minmax(110px, 34%) 1fr auto !important; height:auto !important; min-height:36px; font-size:14px; }
+}
+@media screen and (max-width: 560px) {
+  .cr, .cr.m { grid-template-columns:28px 1fr auto !important; row-gap:0; padding:6px 0; }
+  .cr .lm { grid-column:2 / 4; grid-row:2; color:#8a929c; font-size:13px; }
+  .cr .ty { grid-column:3; grid-row:1; }
+  .cap .k { margin-left:8px; }
+}
 </style>
 <script>
 function fit() { if (matchMedia('print').matches) return;
+  if (innerWidth < 1100) { document.body.style.zoom = ''; document.documentElement.style.background = '#fff'; return; }
   const f = Math.min(innerWidth / 1280, innerHeight / 720);
   document.body.style.zoom = f;
   const h = document.querySelector('.hero').getBoundingClientRect().height * f;
@@ -100,16 +142,16 @@ addEventListener('resize', fit); addEventListener('DOMContentLoaded', fit);
   <img src="metr_chart.png" alt="METR time horizon chart">
   <svg class="ov" viewBox="0 0 3420 1585" preserveAspectRatio="none"><line x1="1820" y1="939" x2="3093" y2="452" stroke="#b42318" stroke-width="20" stroke-linecap="round" opacity="0.13"/>
 <rect x="150" y="290" width="196" height="1092" rx="14" fill="none" stroke="#2e7d32" stroke-width="4.5"/>
-<line x1="393" y1="668" x2="668" y2="668" stroke="#2e7d32" stroke-width="4.5" stroke-linecap="round"/>
+<line x1="393" y1="668" x2="706" y2="668" stroke="#2e7d32" stroke-width="4.5" stroke-linecap="round"/>
 <rect x="362" y="182" width="2808" height="144" rx="4" fill="none" stroke="#2e7d32" stroke-width="4.5"/>
 <rect x="3002" y="176" width="26" height="280" rx="13" fill="none" stroke="#b42318" stroke-width="4.5"/>
-<line x1="1958" y1="172" x2="2470" y2="172" stroke="#b42318" stroke-width="4.5" stroke-linecap="round"/>
+<line x1="1958" y1="172" x2="2482" y2="172" stroke="#b42318" stroke-width="4.5" stroke-linecap="round"/>
 <ellipse cx="2313" cy="913" rx="74" ry="50" fill="none" stroke="#b42318" stroke-width="4.5"/>
-<line x1="2905" y1="248" x2="3001" y2="248" stroke="#b42318" stroke-width="4.5"/>
-<line x1="3150" y1="618" x2="3097" y2="466" stroke="#b42318" stroke-width="4.5"/>
-<line x1="2313" y1="1010" x2="2313" y2="964" stroke="#b42318" stroke-width="4.5"/>
-<line x1="248" y1="246" x2="248" y2="290" stroke="#2e7d32" stroke-width="4.5"/></svg>
-  <span class="tg s" style="left:7.25%;top:13.12%">S1</span><span class="tg s" style="left:21.29%;top:40.44%">S2</span><span class="tg s" style="left:68.13%;top:16.03%">S3</span><span class="tg w" style="left:83.33%;top:15.65%">W1</span><span class="tg w" style="left:92.54%;top:40.88%">W2</span><span class="tg w" style="left:74.44%;top:8.08%">W3</span><span class="tg w" style="left:67.63%;top:65.99%">W4</span>
+<line x1="248" y1="256" x2="248" y2="290" stroke="#2e7d32" stroke-width="4.5"/>
+<line x1="2912" y1="248" x2="3002" y2="248" stroke="#b42318" stroke-width="4.5"/>
+<line x1="3165" y1="649" x2="3095" y2="464" stroke="#b42318" stroke-width="4.5"/>
+<line x1="2313" y1="1003" x2="2313" y2="963" stroke="#b42318" stroke-width="4.5"/></svg>
+  <span class="tg s ch" style="left:7.251%;top:13.589%">S1</span><span class="tg s ch" style="left:22.393%;top:42.145%">S2</span><span class="tg s ch" style="left:68.129%;top:16.025%">S3</span><span class="tg w ch" style="left:83.396%;top:15.647%">W1</span><span class="tg w ch" style="left:92.544%;top:43.533%">W2</span><span class="tg w ch" style="left:74.323%;top:10.852%">W3</span><span class="tg w ch" style="left:67.632%;top:65.843%">W4</span>
 </div>
 <div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 
