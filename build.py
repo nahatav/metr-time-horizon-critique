@@ -40,9 +40,24 @@ S('<rect x="3002" y="176" width="26" height="280" rx="13" fill="none" STROKE_W/>
 S('<line x1="1958" y1="172" x2="2482" y2="172" STROKE_W stroke-linecap="round"/>')                 # W3 "50%"
 S('<ellipse cx="2313" cy="913" rx="74" ry="50" fill="none" STROKE_W/>')                             # W4 light dots
 wy = (ours(t1) + metr(ix(t1))) / 2
+# chip icons: shield (strength) and warning sign (weakness), 16x16 box
+GREEN_T, RED_T = "#e6f2e7", "#fbeae8"
+def chip_icon(kind):
+    m, k = "#fff", (GREEN if kind == "s" else WGREY)
+    if kind == "s":
+        body = (f'<path d="M8 1 14 3.5V8c0 3.5-2.6 6-6 7-3.4-1-6-3.5-6-7V3.5z" fill="{m}"/>'
+                f'<path d="M5 8 7.2 10 11 6" fill="none" stroke="{k}" stroke-width="1.7" stroke-linecap="round"/>')
+    else:
+        body = (f'<path d="M8 1.5 15 14.5H1z" fill="{m}" stroke="{m}" stroke-linejoin="round"/>'
+                f'<path d="M8 6v3.8M8 11.7v.3" stroke="{k}" stroke-width="1.8" stroke-linecap="round"/>')
+    return f'<i class="dk"><svg class="ci" viewBox="0 0 16 16" aria-hidden="true">{body}</svg></i>'
+def chip(kind, label, extra=""):
+    # ring tag: solid green ring for strengths, dashed red ring for weaknesses, number inside
+    return f'<span class="tg rg {kind}{extra}">{label[1:]}</span>'
+
 # tags: fixed size; every connector ends at the middle of the tag side it touches
 KU = IW / 800                                   # image px per layout unit (chart drawn 800 units wide)
-HW, HH = 28 * KU / 2, 19 * KU / 2               # tag half width / half height in image px
+HW, HH = 24 * KU / 2, 24 * KU / 2               # tag half width / half height in image px
 TAGS = [("S1", "s", 248, 290 - 34 - HH), ("S2", "s", 706 + HW, 668), ("S3", "s", 2330, 254),
         ("W1", "w", 3002 - 90 - HW, 248), ("W2", "w", 3165, 690), ("W3", "w", 2482 + HW, 172),
         ("W4", "w", 2313, 963 + 40 + HH)]
@@ -62,7 +77,7 @@ for tag, sd, tx, ty in CONN:
     ov.append(f'<line x1="{sx:.0f}" y1="{sy:.0f}" x2="{tx:.0f}" y2="{ty:.0f}" stroke="{c}" stroke-width="{SW}"/>')
 overlay = "\n".join(ov)
 
-tags = "".join(f'<span class="tg {k} ch" style="left:{x / IW * 100:.3f}%;top:{y / IH * 100:.3f}%">{t}</span>' for t, k, x, y in TAGS)
+tags = "".join(chip(k, t, f' ch" style="left:{x / IW * 100:.3f}%;top:{y / IH * 100:.3f}%') for t, k, x, y in TAGS)
 oursnote = (f'<div class="anno" style="left:{2600 / IW * 100:.2f}%;top:{1010 / IH * 100:.2f}%">'
             f'<svg width="30" height="8"><line x1="2" y1="4" x2="28" y2="4" stroke="{SLATE}" stroke-width="2.2" stroke-dasharray="1 4" stroke-linecap="round"/></svg>'
             f'our refit, 2024 on</div>')
@@ -135,7 +150,7 @@ chan_rows = "".join(f'<div class="lr c">{GL[k]}<span class="ln">{n}</span><span 
 
 # ---------------- critique copy ----------------
 def item(code, kind, head, body):
-    return f'<div class="it"><span class="tg in {kind}">{code}</span><div><h4>{head}</h4><p>{body}</p></div></div>'
+    return f'<div class="it">{chip(kind, code, " in")}<div><h4>{head}</h4><p>{body}</p></div></div>'
 STR = "".join([
  item("S1", "s", "Log scale makes doubling linear",
       "Steady doubling becomes a steady slope, read by position on a common scale, the most accurate channel (L4). Equal ratios get equal distances, as Weber’s law suggests (L4)."),
@@ -167,6 +182,7 @@ BOT = CY - PAD + CHT + 46 + GAP            # top of the two small panels
 MARKS_INLINE = "".join(f'<div class="cr m">{GL[k]}<span class="ln">{n}</span><span class="lm">{x}</span></div>' for k, n, x in MARKS)
 CHAN_ROWS = "".join(f'<div class="cr">{GL[k]}<span class="ln">{n}</span><span class="lm">{x}</span><span class="ty">{t}</span></div>' for k, n, x, t in CHANS)
 
+KEY_S, KEY_W = chip("s", "S", " in"), chip("w", "W", " in")
 html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
@@ -263,20 +279,39 @@ h1 {{ margin:0; font-size:30px; font-weight:400; color:{INK}; letter-spacing:-0.
 .cap {{ position:absolute; left:{CX}px; top:{CY + CHT + 6:.0f}px; width:{CWID}px; text-align:center;
         font:italic 400 11.5px Montserrat,sans-serif; color:{MUTED}; }}
 .cap .k {{ font-style:normal; display:inline-flex; align-items:center; gap:5px; margin-left:12px; }}
-.cap .tg.in {{ display:inline-block; height:15px; line-height:15px; font-size:9px; padding:0 4px; }}
+.page .it .tg.in {{ height:20px; line-height:20px; font-size:11px; gap:4px; }}
+.page .it .tg.in .dk {{ width:19px; height:19px; }}
+.page .it .tg.in .ci {{ width:11px; height:11px; }}
+.cap .tg.in {{ height:18px; line-height:18px; font-size:10.5px; gap:4px; }}
+.cap .tg.in .dk {{ width:17px; height:17px; }}
+.cap .tg.in .ci {{ width:10px; height:10px; }}
 
 .tg {{ position:absolute; transform:translate(-50%,-50%); height:19px; padding:0 6px; border-radius:4px;
        font:600 10.5px/19px Montserrat,sans-serif; color:#fff; letter-spacing:0.2px; box-shadow:0 0 0 2.5px #f4f5f7; }}
-.tg.ch {{ width:3.5cqw; height:2.375cqw; line-height:2.375cqw; font-size:1.3125cqw; padding:0; text-align:center; border-radius:0.5cqw; box-shadow:0 0 0 0.3cqw #f4f5f7; }}
-.tg.s {{ background:{GREEN}; }} .tg.w {{ background:{WGREY}; }}
-.tg.in {{ position:static; transform:none; box-shadow:none; justify-self:start; width:26px; padding:0; text-align:center; }}
+.tg {{ display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; }}
+.tg .dk {{ width:20px; height:20px; border-radius:50%; display:grid; place-items:center; flex:none; }}
+.tg .ci {{ width:12px; height:12px; display:block; }}
+.tg.s .dk {{ background:{GREEN}; }} .tg.w .dk {{ background:{WGREY}; }}
+.tg.ch {{ width:5.75cqw; height:2.75cqw; line-height:2.75cqw; font-size:1.45cqw; padding:0 0.5cqw 0 0.2cqw; gap:0.5cqw; border-radius:1.375cqw; background:rgba(244,245,247,0.92) !important; box-shadow:none !important; }}
+.tg.ch .dk {{ width:2.6cqw; height:2.6cqw; }}
+.tg.ch .ci {{ width:1.55cqw; height:1.55cqw; }}
+.tg.s {{ color:{GREEN}; font-weight:700; }}
+.tg.w {{ color:{WGREY}; font-weight:700; }}
+.tg.rg {{ border-radius:50% !important; background:#fff !important; box-shadow:none !important; padding:0 !important;
+          justify-content:center; font-family:Montserrat,sans-serif; font-weight:700; line-height:1 !important; }}
+.tg.rg.s {{ border:2px solid {GREEN}; }} .tg.rg.w {{ border:2px dashed {WGREY}; }}
+.tg.rg.ch {{ width:3cqw !important; height:3cqw !important; font-size:1.45cqw; border-width:0.26cqw; }}
+.tg.rg.in {{ width:24px; height:24px; font-size:11.5px; }}
+.page .it .tg.rg.in {{ width:23px; height:23px; font-size:11px; }}
+.cap .tg.rg.in {{ width:14px; height:14px; border-width:1.6px; }}
+.tg.in {{ position:static; transform:none; justify-self:start; height:22px; line-height:22px; padding:0; gap:5px; font-size:11.5px; background:none; box-shadow:none; }}
 
 .text {{ position:absolute; left:{TX}px; top:{CY - PAD}px; width:{TW}px; display:grid; grid-template-columns:1fr 1fr; column-gap:32px; row-gap:18px; align-items:start; }}
 .text .sh2 {{ margin:0 0 -2px; }}
 .text .it {{ margin-bottom:0; }}
 .sh2 {{ font-size:18px; font-weight:500; margin:0 0 14px; line-height:1.2; text-align:center; }}
 .sh2.s {{ color:{GREEN}; }} .sh2.w {{ color:{WGREY}; }}
-.it {{ display:grid; grid-template-columns:34px 1fr; margin-bottom:14px; }}
+.it {{ display:grid; grid-template-columns:36px 1fr; margin-bottom:14px; }}
 .it h4 {{ margin:0 0 3px; font-size:14px; line-height:1.3; font-weight:600; color:{INK}; }}
 .it p {{ margin:0; font-size:12.6px; line-height:1.45; }}
 .it p b {{ color:{INK}; font-weight:600; }}
@@ -393,7 +428,7 @@ body.view-poster .card-bg-weak {{
 body.view-poster .col-str .it,
 body.view-poster .col-weak .it {{
   display: grid;
-  grid-template-columns: 30px 1fr;
+  grid-template-columns: 34px 1fr;
   align-items: start;
   margin-bottom: 8px;
 }}
@@ -625,7 +660,7 @@ body.view-adaptive .card-bg-weak {{
 
 body.view-adaptive .it {{
   display: grid !important;
-  grid-template-columns: 34px 1fr !important;
+  grid-template-columns: 36px 1fr !important;
   align-items: start !important;
   margin-bottom: 14px !important;
 }}
@@ -922,7 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {{
   <svg class="ov" viewBox="0 0 {IW} {IH}" preserveAspectRatio="none">{overlay}</svg>
   {tags}
 </div>
-<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
+<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k">{KEY_S}strength</span><span class="k">{KEY_W}weakness</span></div>
 
 <div class="col-str">
   <div class="sh2 s">Strengths</div>

@@ -94,20 +94,39 @@ h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0
 .cap { position:absolute; left:64px; top:583px; width:800px; text-align:center;
         font:italic 400 11.5px Montserrat,sans-serif; color:#8a929c; }
 .cap .k { font-style:normal; display:inline-flex; align-items:center; gap:5px; margin-left:12px; }
-.cap .tg.in { display:inline-block; height:15px; line-height:15px; font-size:9px; padding:0 4px; }
+.page .it .tg.in { height:20px; line-height:20px; font-size:11px; gap:4px; }
+.page .it .tg.in .dk { width:19px; height:19px; }
+.page .it .tg.in .ci { width:11px; height:11px; }
+.cap .tg.in { height:18px; line-height:18px; font-size:10.5px; gap:4px; }
+.cap .tg.in .dk { width:17px; height:17px; }
+.cap .tg.in .ci { width:10px; height:10px; }
 
 .tg { position:absolute; transform:translate(-50%,-50%); height:19px; padding:0 6px; border-radius:4px;
        font:600 10.5px/19px Montserrat,sans-serif; color:#fff; letter-spacing:0.2px; box-shadow:0 0 0 2.5px #f4f5f7; }
-.tg.ch { width:3.5cqw; height:2.375cqw; line-height:2.375cqw; font-size:1.3125cqw; padding:0; text-align:center; border-radius:0.5cqw; box-shadow:0 0 0 0.3cqw #f4f5f7; }
-.tg.s { background:#2e7d32; } .tg.w { background:#b42318; }
-.tg.in { position:static; transform:none; box-shadow:none; justify-self:start; width:26px; padding:0; text-align:center; }
+.tg { display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; }
+.tg .dk { width:20px; height:20px; border-radius:50%; display:grid; place-items:center; flex:none; }
+.tg .ci { width:12px; height:12px; display:block; }
+.tg.s .dk { background:#2e7d32; } .tg.w .dk { background:#b42318; }
+.tg.ch { width:5.75cqw; height:2.75cqw; line-height:2.75cqw; font-size:1.45cqw; padding:0 0.5cqw 0 0.2cqw; gap:0.5cqw; border-radius:1.375cqw; background:rgba(244,245,247,0.92) !important; box-shadow:none !important; }
+.tg.ch .dk { width:2.6cqw; height:2.6cqw; }
+.tg.ch .ci { width:1.55cqw; height:1.55cqw; }
+.tg.s { color:#2e7d32; font-weight:700; }
+.tg.w { color:#b42318; font-weight:700; }
+.tg.rg { border-radius:50% !important; background:#fff !important; box-shadow:none !important; padding:0 !important;
+          justify-content:center; font-family:Montserrat,sans-serif; font-weight:700; line-height:1 !important; }
+.tg.rg.s { border:2px solid #2e7d32; } .tg.rg.w { border:2px dashed #b42318; }
+.tg.rg.ch { width:3cqw !important; height:3cqw !important; font-size:1.45cqw; border-width:0.26cqw; }
+.tg.rg.in { width:24px; height:24px; font-size:11.5px; }
+.page .it .tg.rg.in { width:23px; height:23px; font-size:11px; }
+.cap .tg.rg.in { width:14px; height:14px; border-width:1.6px; }
+.tg.in { position:static; transform:none; justify-self:start; height:22px; line-height:22px; padding:0; gap:5px; font-size:11.5px; background:none; box-shadow:none; }
 
 .text { position:absolute; left:912px; top:190px; width:640px; display:grid; grid-template-columns:1fr 1fr; column-gap:32px; row-gap:18px; align-items:start; }
 .text .sh2 { margin:0 0 -2px; }
 .text .it { margin-bottom:0; }
 .sh2 { font-size:18px; font-weight:500; margin:0 0 14px; line-height:1.2; text-align:center; }
 .sh2.s { color:#2e7d32; } .sh2.w { color:#b42318; }
-.it { display:grid; grid-template-columns:34px 1fr; margin-bottom:14px; }
+.it { display:grid; grid-template-columns:36px 1fr; margin-bottom:14px; }
 .it h4 { margin:0 0 3px; font-size:14px; line-height:1.3; font-weight:600; color:#222a34; }
 .it p { margin:0; font-size:12.6px; line-height:1.45; }
 .it p b { color:#222a34; font-weight:600; }
@@ -224,7 +243,7 @@ body.view-poster .card-bg-weak {
 body.view-poster .col-str .it,
 body.view-poster .col-weak .it {
   display: grid;
-  grid-template-columns: 30px 1fr;
+  grid-template-columns: 34px 1fr;
   align-items: start;
   margin-bottom: 8px;
 }
@@ -456,7 +475,7 @@ body.view-adaptive .card-bg-weak {
 
 body.view-adaptive .it {
   display: grid !important;
-  grid-template-columns: 34px 1fr !important;
+  grid-template-columns: 36px 1fr !important;
   align-items: start !important;
   margin-bottom: 14px !important;
 }
@@ -759,23 +778,23 @@ document.addEventListener('DOMContentLoaded', () => {
 <ellipse cx="2313" cy="913" rx="74" ry="50" fill="none" stroke="#b42318" stroke-width="4.5"/>
 <line x1="248" y1="256" x2="248" y2="290" stroke="#2e7d32" stroke-width="4.5"/>
 <line x1="2912" y1="248" x2="3002" y2="248" stroke="#b42318" stroke-width="4.5"/>
-<line x1="3165" y1="649" x2="3095" y2="464" stroke="#b42318" stroke-width="4.5"/>
+<line x1="3165" y1="639" x2="3095" y2="464" stroke="#b42318" stroke-width="4.5"/>
 <line x1="2313" y1="1003" x2="2313" y2="963" stroke="#b42318" stroke-width="4.5"/></svg>
-  <span class="tg s ch" style="left:7.251%;top:13.589%">S1</span><span class="tg s ch" style="left:22.393%;top:42.145%">S2</span><span class="tg s ch" style="left:68.129%;top:16.025%">S3</span><span class="tg w ch" style="left:83.396%;top:15.647%">W1</span><span class="tg w ch" style="left:92.544%;top:43.533%">W2</span><span class="tg w ch" style="left:74.323%;top:10.852%">W3</span><span class="tg w ch" style="left:67.632%;top:65.843%">W4</span>
+  <span class="tg rg s ch" style="left:7.251%;top:12.915%">1</span><span class="tg rg s ch" style="left:22.143%;top:42.145%">2</span><span class="tg rg s ch" style="left:68.129%;top:16.025%">3</span><span class="tg rg w ch" style="left:83.646%;top:15.647%">1</span><span class="tg rg w ch" style="left:92.544%;top:43.533%">2</span><span class="tg rg w ch" style="left:74.073%;top:10.852%">3</span><span class="tg rg w ch" style="left:67.632%;top:66.517%">4</span>
 </div>
-<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
+<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg rg s in"></span>strength</span><span class="k"><span class="tg rg w in"></span>weakness</span></div>
 
 <div class="col-str">
   <div class="sh2 s">Strengths</div>
   <div class="card-bg-str">
-    <div class="it"><span class="tg in s">S1</span><div><h4>Log scale makes doubling linear</h4><p>Steady doubling becomes a steady slope, read by position on a common scale, the most accurate channel (L4). Equal ratios get equal distances, as Weber’s law suggests (L4).</p></div></div><div class="it"><span class="tg in s">S2</span><div><h4>Example tasks give the axis meaning</h4><p>“Train classifier” near 1 hour maps the physical unit, minutes, onto a conceptual one, kinds of work (data models, L2).</p></div></div><div class="it"><span class="tg in s">S3</span><div><h4>It marks where its data stops</h4><p>Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2).</p></div></div>
+    <div class="it"><span class="tg rg s in">1</span><div><h4>Log scale makes doubling linear</h4><p>Steady doubling becomes a steady slope, read by position on a common scale, the most accurate channel (L4). Equal ratios get equal distances, as Weber’s law suggests (L4).</p></div></div><div class="it"><span class="tg rg s in">2</span><div><h4>Example tasks give the axis meaning</h4><p>“Train classifier” near 1 hour maps the physical unit, minutes, onto a conceptual one, kinds of work (data models, L2).</p></div></div><div class="it"><span class="tg rg s in">3</span><div><h4>It marks where its data stops</h4><p>Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2).</p></div></div>
   </div>
 </div>
 
 <div class="col-weak">
   <div class="sh2 w">Weaknesses</div>
   <div class="card-bg-weak">
-    <div class="it"><span class="tg in w">W1</span><div><h4>Uncertainty is drawn at 20% opacity</h4><p>Opus 4.6 reads as 12 h; its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (figure and ground, L5). <b>Fix:</b> wide CI bars.</p></div></div><div class="it"><span class="tg in w">W2</span><div><h4>One straight line hides a bend</h4><p>Every model since o3 sits above it. Like Anscombe’s quartet (L1), one summary hides structure; continuity (L5) reads one pace. <b>Fix:</b> a recent fit.</p></div></div><div class="it"><span class="tg in w">W3</span><div><h4>“50%” carries the headline</h4><p>At 80%, Opus 4.6 falls from 12 h to 70 min, yet the threshold sits in a rotated label that needs attentive reading (L4). <b>Fix:</b> plot both.</p></div></div><div class="it"><span class="tg in w">W4</span><div><h4>Luminance used for a category</h4><p>Frontier or not is nominal, but light green is an ordered channel with no key (expressiveness, L2). Six models are half dots. <b>Fix:</b> hue, key, jitter.</p></div></div>
+    <div class="it"><span class="tg rg w in">1</span><div><h4>Uncertainty is drawn at 20% opacity</h4><p>Opus 4.6 reads as 12 h; its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (figure and ground, L5). <b>Fix:</b> wide CI bars.</p></div></div><div class="it"><span class="tg rg w in">2</span><div><h4>One straight line hides a bend</h4><p>Every model since o3 sits above it. Like Anscombe’s quartet (L1), one summary hides structure; continuity (L5) reads one pace. <b>Fix:</b> a recent fit.</p></div></div><div class="it"><span class="tg rg w in">3</span><div><h4>“50%” carries the headline</h4><p>At 80%, Opus 4.6 falls from 12 h to 70 min, yet the threshold sits in a rotated label that needs attentive reading (L4). <b>Fix:</b> plot both.</p></div></div><div class="it"><span class="tg rg w in">4</span><div><h4>Luminance used for a category</h4><p>Frontier or not is nominal, but light green is an ordered channel with no key (expressiveness, L2). Six models are half dots. <b>Fix:</b> hue, key, jitter.</p></div></div>
   </div>
 </div>
 
