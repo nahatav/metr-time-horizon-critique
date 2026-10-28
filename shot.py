@@ -34,6 +34,7 @@ with sync_playwright() as p:
     print("overflow:", over)
     pg.screenshot(path="preview.png")
     pg.screenshot(path="poster.png")
+    pg.screenshot(path="critique-poster.png")
     
     if "--pdf" in sys.argv:
         pg.pdf(path="METR_time_horizon_critique.pdf", width="1280px", height="720px", print_background=True)

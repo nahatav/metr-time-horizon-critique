@@ -194,8 +194,8 @@ html = f"""<!doctype html>
 <meta property="og:url" content="https://nahatav.github.io/metr-time-horizon-critique/">
 <meta property="og:title" content="METR's Time Horizon Chart Is Easy to Read, and Easy to Overread">
 <meta property="og:description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
-<meta property="og:image" content="https://nahatav.github.io/metr-time-horizon-critique/poster.png">
-<meta property="og:image:secure_url" content="https://nahatav.github.io/metr-time-horizon-critique/poster.png">
+<meta property="og:image" content="https://nahatav.github.io/metr-time-horizon-critique/critique-poster.png">
+<meta property="og:image:secure_url" content="https://nahatav.github.io/metr-time-horizon-critique/critique-poster.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
@@ -206,7 +206,7 @@ html = f"""<!doctype html>
 <meta name="twitter:url" content="https://nahatav.github.io/metr-time-horizon-critique/">
 <meta name="twitter:title" content="METR's Time Horizon Chart Is Easy to Read, and Easy to Overread">
 <meta name="twitter:description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
-<meta name="twitter:image" content="https://nahatav.github.io/metr-time-horizon-critique/poster.png">
+<meta name="twitter:image" content="https://nahatav.github.io/metr-time-horizon-critique/critique-poster.png">
 <meta name="twitter:image:alt" content="METR Time Horizon Chart Critique Poster">
 
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
