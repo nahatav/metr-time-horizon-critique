@@ -6,8 +6,12 @@ with sync_playwright() as p:
     # Open in poster mode for social preview screenshot and PDF export
     pg.goto(pathlib.Path("index.html").resolve().as_uri() + "?view=poster", wait_until="networkidle")
     pg.wait_for_timeout(500)
-    # Temporarily hide the interactive view-picker for a pristine poster screenshot
-    pg.evaluate("document.querySelector('.view-picker')?.remove()")
+    # Hide the floating view-switch-nav for pristine preview screenshot
+    pg.evaluate("""() => {
+        document.querySelector('.view-switch-nav')?.remove();
+        const stage = document.querySelector('.poster-stage');
+        if (stage) stage.style.paddingTop = '0';
+    }""")
     pg.wait_for_timeout(100)
     over = pg.evaluate("""() => [...document.querySelectorAll('body')].filter(e=>e.scrollHeight>e.clientHeight+1).map(e=>e.className+' '+e.scrollHeight+'>'+e.clientHeight)""")
     print("overflow:", over)

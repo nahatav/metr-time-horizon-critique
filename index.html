@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 <title>METR Time Horizon Critique</title>
 <meta name="description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
 
@@ -25,20 +25,30 @@
 @page { size:1280px 720px; margin:0; }
 * { box-sizing:border-box; }
 html,body { margin:0; background:#fff; }
-body { width:1280px; height:720px; overflow:hidden; color:#4d5561;
-        font-family:"Instrument Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
+body { color:#4d5561; font-family:"Instrument Sans",-apple-system,sans-serif;
         -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-.poster-stage { width:100%; height:100%; display:flex; justify-content:center; align-items:flex-start; }
-.page { position:relative; width:1600px; height:900px; zoom:0.8; }
 
-/* Seamlessly integrated layout toggle */
+/* Fixed top floating layout toggle pill */
+.view-switch-nav {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .view-picker {
   display: inline-flex;
   align-items: center;
-  background: #e6e8eb;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 3px;
   border-radius: 20px;
   gap: 2px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.06);
 }
 .view-opt {
   display: inline-flex;
@@ -50,7 +60,7 @@ body { width:1280px; height:720px; overflow:hidden; color:#4d5561;
   font-family: "Instrument Sans", -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
-  padding: 4px 13px;
+  padding: 5px 14px;
   border-radius: 16px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -63,13 +73,16 @@ body { width:1280px; height:720px; overflow:hidden; color:#4d5561;
   background: #222a34;
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.14);
 }
 .view-opt svg {
   flex-shrink: 0;
 }
 
-.hero { position:absolute; left:0; top:0; width:1600px; background:#f6f7f8; text-align:center; padding:18px 0 18px; }
+/* Base poster canvas */
+.page { position:relative; width:1600px; height:900px; }
+
+.hero { position:absolute; left:0; top:0; width:1600px; background:#f6f7f8; text-align:center; padding:20px 0 20px; }
 h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0.3px; line-height:1.15; }
 .authors { margin-top:8px; font-size:15px; color:#222a34; }
 .authors span { margin:0 10px; }
@@ -129,40 +142,43 @@ h1 { margin:0; font-size:30px; font-weight:400; color:#222a34; letter-spacing:-0
 .gl { display:block; flex:none; }
 .lbl { font-size:10.5px; font-weight:600; letter-spacing:1.1px; text-transform:uppercase; color:#8a929c; margin:0 0 4px; }
 
-/* ---------------- Poster layout mode (PC) ---------------- */
+/* ---------------- Poster layout mode (PC & Mobile) ---------------- */
 body.view-poster {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
+  display: block;
   background: #fff;
+  -webkit-overflow-scrolling: touch;
 }
 body.view-poster .poster-stage {
-  flex: 1;
   width: 100%;
-  height: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: auto;
+  padding-top: 56px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+body.view-poster .poster-wrapper {
   position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 body.view-poster .page {
   position: absolute;
+  left: 0;
   top: 0;
   width: 1600px;
   height: 900px;
-  zoom: 0.8;
-  transform-origin: top center;
+  transform-origin: 0 0;
   flex-shrink: 0;
-}
-body.view-poster .hero .view-picker {
-  position: absolute;
-  top: 16px;
-  right: 36px;
-  z-index: 10;
 }
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
@@ -180,10 +196,16 @@ body.view-adaptive .poster-stage {
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
+  padding-top: 56px !important;
+}
+body.view-adaptive .poster-wrapper {
+  width: 100% !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
 }
 body.view-adaptive .page {
   position: static !important;
-  zoom: 1 !important;
+  transform: none !important;
   width: 100% !important;
   max-width: 680px !important;
   height: auto !important;
@@ -209,13 +231,9 @@ body.view-adaptive .hero {
   background: #f6f7f8 !important;
   border-radius: 14px !important;
   text-align: center !important;
-  padding: 20px 16px 20px !important;
-  margin-top: 16px !important;
+  padding: 24px 16px 20px !important;
+  margin-top: 8px !important;
   box-sizing: border-box !important;
-}
-body.view-adaptive .hero .view-picker {
-  display: inline-flex !important;
-  margin: 0 auto 16px !important;
 }
 body.view-adaptive h1 {
   font-size: clamp(20px, 4.8vw, 27px) !important;
@@ -383,9 +401,9 @@ body.view-adaptive .re svg {
   }
 }
 
-/* Print styles: strict poster page */
+/* Print styles: strict poster page without UI */
 @media print {
-  .view-picker { display: none !important; }
+  .view-switch-nav { display: none !important; }
   body {
     width: 1280px !important;
     height: 720px !important;
@@ -398,12 +416,19 @@ body.view-adaptive .re svg {
     display: block !important;
     width: 1280px !important;
     height: 720px !important;
+    padding: 0 !important;
+  }
+  .poster-wrapper {
+    width: 1280px !important;
+    height: 720px !important;
+    margin: 0 !important;
   }
   .page {
     position: relative !important;
     width: 1600px !important;
     height: 900px !important;
-    zoom: 0.8 !important;
+    transform: scale(0.8) !important;
+    transform-origin: 0 0 !important;
   }
 }
 </style>
@@ -412,32 +437,40 @@ function fit() {
   if (matchMedia('print').matches) return;
   const isPoster = document.body.classList.contains('view-poster');
   const page = document.querySelector('.page');
+  const wrapper = document.querySelector('.poster-wrapper');
 
   if (!isPoster) {
-    if (page) {
-      page.style.zoom = '';
-      page.style.transform = '';
+    if (page) page.style.transform = '';
+    if (wrapper) {
+      wrapper.style.width = '';
+      wrapper.style.height = '';
     }
     document.documentElement.style.background = '#fff';
     document.documentElement.style.minHeight = '100vh';
     return;
   }
 
-  const availW = window.innerWidth;
-  const availH = window.innerHeight;
+  // Read actual available client width (immune to unscaled overflow)
+  const docW = document.documentElement.clientWidth || window.innerWidth;
+  const winH = window.innerHeight;
+  const availW = docW;
+  const availH = winH - 60;
 
-  let scale = Math.min(availW / 1280, availH / 720);
-  if (availW < 768) {
-    scale = availW / 1280;
+  let scale = Math.min(availW / 1600, availH / 900);
+  if (availW < 800) {
+    // On mobile phone portrait, fit width cleanly
+    scale = availW / 1600;
   }
 
-  if (page) {
-    page.style.zoom = 0.8 * scale;
+  if (page && wrapper) {
+    page.style.transform = 'scale(' + scale + ')';
+    page.style.transformOrigin = '0 0';
+    wrapper.style.width = (1600 * scale) + 'px';
+    wrapper.style.height = (900 * scale) + 'px';
   }
 
-  const hero = document.querySelector('.hero');
-  const heroH = hero ? hero.getBoundingClientRect().height * scale : 0;
-  document.documentElement.style.background = `#fff linear-gradient(#f6f7f8, #f6f7f8) no-repeat top / 100% ${heroH}px`;
+  const heroH = 158 * scale;
+  document.documentElement.style.background = `#fff linear-gradient(#f6f7f8, #f6f7f8) no-repeat top / 100% ${heroH + 56}px`;
   document.documentElement.style.minHeight = '100vh';
 }
 
@@ -507,10 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 
-<div class="poster-stage">
-<div class="page">
-
-<div class="hero">
+<nav class="view-switch-nav">
   <div class="view-picker" role="radiogroup" aria-label="Layout view selection">
     <button type="button" class="view-opt active" id="opt-adaptive" role="radio" aria-checked="true" onclick="setLayout('adaptive')">
       <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -529,7 +559,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>Poster</span>
     </button>
   </div>
+</nav>
 
+<div class="poster-stage">
+<div class="poster-wrapper">
+<div class="page">
+
+<div class="hero">
   <h1>METR’s Time Horizon Chart Is Easy to Read, and Easy to Overread</h1>
   <div class="authors"><span>Valmik Nahata</span><span>Varun Sinha</span><span>Rishab Kolan</span><span>Rishil Chintalapati</span></div>
   <div class="affil">UC San Diego, DSC 106 Project 2.5 &nbsp;·&nbsp; {vnahata, v1sinha, rkolan, rchintalapati}@ucsd.edu</div>
@@ -628,6 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="it"><span class="tg in s">S1</span><div><h4>Log scale makes doubling a straight line</h4><p>Steady growth reads as a steady slope, through position on a common scale, the most accurate channel (L4). Ratios also fit Weber’s law (L4).</p></div></div><div class="it"><span class="tg in w">W1</span><div><h4>Uncertainty is drawn at 20% opacity</h4><p>Opus 4.6 reads as 12 h, yet its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (L5). <b>Fix:</b> solid CI bars.</p></div></div><div class="it"><span class="tg in s">S2</span><div><h4>Example tasks give the axis meaning</h4><p>“Train classifier” at about an hour turns minutes into kinds of work, a conceptual unit (data models, L2).</p></div></div><div class="it"><span class="tg in w">W2</span><div><h4>One straight line hides a bend</h4><p>Every frontier model since o3 sits above METR’s line. Continuity (L5) reads it as one pace. <b>Fix:</b> add the recent fit.</p></div></div><div class="it"><span class="tg in s">S3</span><div><h4>It marks where its data stops</h4><p>Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2).</p></div></div><div class="it"><span class="tg in w">W3</span><div><h4>“50%” carries the headline</h4><p>At 80% success Opus 4.6 drops from 12 h to 70 min, yet the threshold sits only in the title and a rotated label (L4). <b>Fix:</b> plot both.</p></div></div><div></div><div class="it"><span class="tg in w">W4</span><div><h4>Light and split dots go unexplained</h4><p>No key for light green, 10 of 26 models named, two models share one split dot (expressiveness, L2). <b>Fix:</b> key and jitter.</p></div></div>
 </div>
 
+</div>
 </div>
 </div>
 </body></html>
