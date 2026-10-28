@@ -346,39 +346,6 @@ body.view-poster .hero .view-picker {{
   right: 36px;
   z-index: 10;
 }}
-/* Section boxes exclusively in poster mode */
-body.view-poster .hero {{
-  border-bottom: 1px solid #000;
-}}
-body.view-poster .chbg {{
-  border: 1px solid #000;
-  border-radius: 0;
-  box-sizing: border-box;
-}}
-body.view-poster .text {{
-  border: 1px solid #000;
-  box-sizing: border-box;
-  padding: 16px 20px;
-  height: {CHT + 46:.0f}px;
-  background: #fff;
-  border-radius: 0;
-}}
-body.view-poster .panel.mc {{
-  border: 1px solid #000;
-  box-sizing: border-box;
-  padding: 14px 20px;
-  background: #fff;
-  height: {900 - BOT - 20:.0f}px;
-  border-radius: 0;
-}}
-body.view-poster .panel.re {{
-  border: 1px solid #000;
-  box-sizing: border-box;
-  padding: 14px 20px;
-  background: #fff;
-  height: {900 - BOT - 20:.0f}px;
-  border-radius: 0;
-}}
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
 body.view-adaptive {{
@@ -400,7 +367,6 @@ body.view-adaptive .poster-wrapper {{
   width: 100% !important;
   max-width: 680px !important;
   margin: 0 auto !important;
-  border: none !important;
 }}
 body.view-adaptive .page {{
   position: static !important;
