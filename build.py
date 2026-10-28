@@ -346,6 +346,128 @@ body.view-poster .hero .view-picker {{
   right: 36px;
   z-index: 10;
 }}
+/* Cards with background thingies in poster mode */
+
+body.view-poster .chbg {{
+  background: #f4f5f7;
+  border-radius: 10px;
+  border: none;
+}}
+body.view-poster .col-str {{
+  position: absolute;
+  left: {TX}px;
+  top: {CY - PAD}px;
+  width: 312px;
+}}
+body.view-poster .col-weak {{
+  position: absolute;
+  left: {TX + 312 + 16}px;
+  top: {CY - PAD}px;
+  width: 312px;
+}}
+body.view-poster .col-str .sh2,
+body.view-poster .col-weak .sh2 {{
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 8px;
+  line-height: 1.2;
+  text-align: center;
+  color: {INK};
+}}
+body.view-poster .card-bg-str {{
+  background: #edf7ee;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+}}
+body.view-poster .card-bg-weak {{
+  background: #fdf0f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+}}
+body.view-poster .col-str .it,
+body.view-poster .col-weak .it {{
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: start;
+  margin-bottom: 8px;
+}}
+body.view-poster .col-str .it:last-child,
+body.view-poster .col-weak .it:last-child {{
+  margin-bottom: 0;
+}}
+body.view-poster .col-str .it h4,
+body.view-poster .col-weak .it h4 {{
+  font-size: 14px;
+  line-height: 1.3;
+  margin: 0 0 2px;
+  font-weight: 600;
+}}
+body.view-poster .col-str .it p,
+body.view-poster .col-weak .it p {{
+  font-size: 12.6px;
+  line-height: 1.45;
+  margin: 0;
+}}
+body.view-poster .col-marks {{
+  position: absolute;
+  left: {M}px;
+  top: {BOT:.0f}px;
+  width: 340px;
+}}
+body.view-poster .col-chans {{
+  position: absolute;
+  left: {M + 340 + 16}px;
+  top: {BOT:.0f}px;
+  width: {CWID + 2 * PAD - 340 - 16}px;
+}}
+body.view-poster .col-marks h3,
+body.view-poster .col-chans h3 {{
+  font-size: 18px;
+  font-weight: 500;
+  color: {INK};
+  text-align: center;
+  margin: 0 0 8px;
+}}
+body.view-poster .card-box-marks,
+body.view-poster .card-box-chans {{
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}}
+
+body.view-poster .col-re {{
+  position: absolute;
+  left: {TX}px;
+  top: {BOT:.0f}px;
+  width: {TW}px;
+  height: {900 - BOT - 20:.0f}px;
+}}
+body.view-poster .col-re h3 {{
+  font-size: 18px;
+  font-weight: 500;
+  color: {INK};
+  text-align: center;
+  margin: 0 0 4px;
+}}
+body.view-poster .col-re .lead {{
+  font-size: 12.6px;
+  line-height: 1.45;
+  margin: 0 0 6px;
+  text-align: center;
+}}
+body.view-poster .col-re svg.plot {{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background: #f4f5f7;
+  border-radius: 10px;
+  border: none;
+}}
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
 body.view-adaptive {{
@@ -451,41 +573,61 @@ body.view-adaptive .cap {{
   color: {MUTED} !important;
   line-height: 1.7 !important;
 }}
-body.view-adaptive .text {{
-  order: 3 !important;
-  margin: 32px auto 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
+body.view-adaptive .col-str,
+body.view-adaptive .col-weak,
+body.view-adaptive .col-marks,
+body.view-adaptive .col-chans,
+body.view-adaptive .col-re {{
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
 }}
-body.view-adaptive .text > div:not(.it):not(.sh2) {{
-  display: none !important;
+
+body.view-adaptive .col-str {{
+  order: 2 !important;
+  margin-top: 32px !important;
 }}
-body.view-adaptive .text .sh2 {{
-  text-align: center !important;
-  margin: 0 !important;
+body.view-adaptive .col-str .sh2 {{
   font-size: 20px !important;
   font-weight: 600 !important;
+  text-align: left !important;
+  color: {INK} !important;
+  margin: 0 0 12px !important;
 }}
-body.view-adaptive .text .sh2.s {{
-  order: 0 !important;
-  color: {GREEN} !important;
+body.view-adaptive .card-bg-str {{
+  background: #edf7ee !important;
+  border-radius: 12px !important;
+  padding: 16px 14px !important;
 }}
-body.view-adaptive .text .it:has(.tg.s) {{
-  order: 1 !important;
-}}
-body.view-adaptive .text .sh2.w {{
-  order: 2 !important;
-  margin-top: 20px !important;
-  color: {WGREY} !important;
-}}
-body.view-adaptive .text .it:has(.tg.w) {{
+
+body.view-adaptive .col-weak {{
   order: 3 !important;
+  margin-top: 28px !important;
 }}
+body.view-adaptive .col-weak .sh2 {{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  color: {INK} !important;
+  margin: 0 0 12px !important;
+}}
+body.view-adaptive .card-bg-weak {{
+  background: #fdf0f0 !important;
+  border-radius: 12px !important;
+  padding: 16px 14px !important;
+}}
+
 body.view-adaptive .it {{
   display: grid !important;
   grid-template-columns: 34px 1fr !important;
-  margin-bottom: 4px !important;
+  align-items: start !important;
+  margin-bottom: 14px !important;
+}}
+body.view-adaptive .it:last-child {{
+  margin-bottom: 0 !important;
 }}
 body.view-adaptive .it h4 {{
   font-size: 15px !important;
@@ -498,46 +640,74 @@ body.view-adaptive .it p {{
   line-height: 1.5 !important;
   margin: 0 !important;
 }}
-body.view-adaptive .panel.mc {{
+
+body.view-adaptive .col-marks {{
   order: 4 !important;
-  margin: 40px auto 0 !important;
+  margin-top: 36px !important;
 }}
-body.view-adaptive .panel.mc h3 {{
+body.view-adaptive .col-marks h3 {{
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: left !important;
-  margin: 0 0 16px !important;
+  margin: 0 0 12px !important;
 }}
-body.view-adaptive .mcg {{
-  margin-top: 0 !important;
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  row-gap: 20px !important;
+body.view-adaptive .col-chans {{
+  order: 5 !important;
+  margin-top: 28px !important;
 }}
+body.view-adaptive .col-chans h3 {{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  margin: 0 0 12px !important;
+}}
+body.view-adaptive .card-box-marks,
+body.view-adaptive .card-box-chans {{
+  border: 1px solid #000 !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+}}
+
 body.view-adaptive .cr,
 body.view-adaptive .cr.m {{
+  display: grid !important;
   grid-template-columns: 32px minmax(110px, 32%) 1fr auto !important;
+  align-items: center !important;
   height: auto !important;
   min-height: 36px !important;
   font-size: 13.5px !important;
+  border: none !important;
+  padding: 3px 0 !important;
 }}
-body.view-adaptive .panel.re {{
-  order: 5 !important;
-  margin: 40px auto 0 !important;
+
+body.view-adaptive .col-re {{
+  order: 6 !important;
+  margin-top: 36px !important;
 }}
-body.view-adaptive .panel.re h3 {{
+body.view-adaptive .col-re h3 {{
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: left !important;
   margin: 0 0 8px !important;
 }}
-body.view-adaptive .panel.re .lead {{
+body.view-adaptive .col-re .lead {{
   text-align: left !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
   max-width: 100% !important;
   margin: 0 0 16px !important;
   padding: 0 !important;
+}}
+body.view-adaptive .col-re svg.plot {{
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  background: #f4f5f7 !important;
+  border-radius: 12px !important;
+  border: none !important;
 }}
 body.view-adaptive .re svg {{
   width: 100% !important;
@@ -751,22 +921,38 @@ document.addEventListener('DOMContentLoaded', () => {{
 </div>
 <div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 
-<div class="panel re">
-  <h3>Our reanalysis</h3>
-  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
-  {resid}
-</div>
-<div class="panel mc">
-  <h3>Marks and channels</h3>
-  <div class="mcg">
-    <div>{MARKS_INLINE}</div>
-    <div>{CHAN_ROWS}</div>
+<div class="col-str">
+  <div class="sh2 s">Strengths</div>
+  <div class="card-bg-str">
+    {STR}
   </div>
 </div>
 
-<div class="text">
-  <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
-  {ROWS}
+<div class="col-weak">
+  <div class="sh2 w">Weaknesses</div>
+  <div class="card-bg-weak">
+    {WEAK}
+  </div>
+</div>
+
+<div class="col-marks">
+  <h3>Marks</h3>
+  <div class="card-box-marks">
+    {MARKS_INLINE}
+  </div>
+</div>
+
+<div class="col-chans">
+  <h3>Channels</h3>
+  <div class="card-box-chans">
+    {CHAN_ROWS}
+  </div>
+</div>
+
+<div class="col-re">
+  <h3>Our reanalysis</h3>
+  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
+  {resid}
 </div>
 
 </div>
