@@ -347,6 +347,115 @@ body.view-poster .hero .view-picker {{
   z-index: 10;
 }}
 
+/* ---------------- Boxed sections for the poster ---------------- */
+body.view-poster .hero {{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1600px;
+  background: {BAND};
+  text-align: center;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid #000;
+}}
+
+body.view-poster .sec-box {{
+  position: absolute;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  background: #fff;
+}}
+
+/* Top-Left: Original Chart Box */
+body.view-poster .sec-chart {{
+  left: 40px;
+  top: 164px;
+  width: 840px;
+  height: 440px;
+  background: #f4f5f7;
+}}
+body.view-poster .sec-chart .fig {{
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: 800px;
+  height: {800 * IH / IW:.0f}px;
+}}
+body.view-poster .sec-chart .cap {{
+  position: absolute;
+  left: 20px;
+  top: {18 + 800 * IH / IW + 8:.0f}px;
+  width: 800px;
+  text-align: center;
+}}
+
+/* Top-Right: Design Critique Box */
+body.view-poster .sec-critique {{
+  left: 900px;
+  top: 164px;
+  width: 660px;
+  height: 440px;
+  padding: 16px 20px;
+}}
+body.view-poster .sec-critique .text {{
+  position: static;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 14px;
+  align-items: start;
+}}
+
+/* Bottom-Left: Marks & Channels Box */
+body.view-poster .sec-mc {{
+  left: 40px;
+  top: 620px;
+  width: 840px;
+  height: 260px;
+  padding: 14px 24px;
+}}
+body.view-poster .sec-mc h3 {{
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 500;
+  color: {INK};
+  text-align: center;
+}}
+body.view-poster .sec-mc .mcg {{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 310px 430px;
+  column-gap: 40px;
+  justify-content: center;
+}}
+
+/* Bottom-Right: Our Reanalysis Box */
+body.view-poster .sec-re {{
+  left: 900px;
+  top: 620px;
+  width: 660px;
+  height: 260px;
+  padding: 14px 20px;
+}}
+body.view-poster .sec-re h3 {{
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 500;
+  color: {INK};
+  text-align: center;
+}}
+body.view-poster .sec-re .lead {{
+  font-size: 12.5px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  text-align: center;
+}}
+body.view-poster .sec-re svg {{
+  display: block;
+  margin: 0 auto;
+}}
+
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
 body.view-adaptive {{
   width: 100% !important;
@@ -367,9 +476,60 @@ body.view-adaptive .poster-wrapper {{
   width: 100% !important;
   max-width: 680px !important;
   margin: 0 auto !important;
+  border: none !important;
 }}
 body.view-adaptive .page {{
   position: static !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 680px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 16px 48px !important;
+  box-sizing: border-box !important;
+}}
+body.view-adaptive .page > * {{
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}}
+body.view-adaptive .sec-box {{
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  border: 1px solid #000 !important;
+  border-radius: 12px !important;
+  margin-top: 18px !important;
+  padding: 20px 16px !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+}}
+body.view-adaptive .sec-chart {{
+  background: #f4f5f7 !important;
+  padding: 16px 12px !important;
+}}
+body.view-adaptive .sec-chart .fig {{
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  height: auto !important;
+}}
+body.view-adaptive .sec-chart .cap {{
+  position: static !important;
+  width: 100% !important;
+  margin-top: 12px !important;
+}}
+body.view-adaptive .sec-critique .text {{
+  position: static !important;
+  width: 100% !important;
+  display: block !important;
+}}
   transform: none !important;
   width: 100% !important;
   max-width: 680px !important;
@@ -743,20 +903,23 @@ document.addEventListener('DOMContentLoaded', () => {{
   </div>
 </div>
 
-<div class="chbg" style="left:{M}px;top:{CY - PAD}px;width:{CWID + 2 * PAD}px;height:{CHT + 46:.0f}px"></div>
-<div class="fig">
-  <img src="metr_chart.png" alt="METR time horizon chart">
-  <svg class="ov" viewBox="0 0 {IW} {IH}" preserveAspectRatio="none">{overlay}</svg>
-  {tags}
+<div class="sec-box sec-chart">
+  <div class="fig">
+    <img src="metr_chart.png" alt="METR time horizon chart">
+    <svg class="ov" viewBox="0 0 {IW} {IH}" preserveAspectRatio="none">{overlay}</svg>
+    {tags}
+  </div>
+  <div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 </div>
-<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 
-<div class="panel re">
-  <h3>Our reanalysis</h3>
-  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
-  {resid}
+<div class="sec-box sec-critique">
+  <div class="text">
+    <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
+    {ROWS}
+  </div>
 </div>
-<div class="panel mc">
+
+<div class="sec-box sec-mc">
   <h3>Marks and channels</h3>
   <div class="mcg">
     <div>{MARKS_INLINE}</div>
@@ -764,9 +927,10 @@ document.addEventListener('DOMContentLoaded', () => {{
   </div>
 </div>
 
-<div class="text">
-  <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
-  {ROWS}
+<div class="sec-box sec-re">
+  <h3>Our reanalysis</h3>
+  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
+  {resid}
 </div>
 
 </div>
