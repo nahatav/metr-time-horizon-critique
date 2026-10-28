@@ -177,114 +177,38 @@ body.view-poster .hero .view-picker {
   right: 36px;
   z-index: 10;
 }
-
-/* ---------------- Boxed sections for the poster ---------------- */
+/* Section boxes exclusively in poster mode */
 body.view-poster .hero {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1600px;
-  background: #f6f7f8;
-  text-align: center;
-  padding: 18px 0 16px;
   border-bottom: 1px solid #000;
 }
-
-body.view-poster .sec-box {
-  position: absolute;
+body.view-poster .chbg {
+  border: 1px solid #000;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+body.view-poster .text {
   border: 1px solid #000;
   box-sizing: border-box;
-  background: #fff;
-}
-
-/* Top-Left: Original Chart Box */
-body.view-poster .sec-chart {
-  left: 40px;
-  top: 164px;
-  width: 840px;
-  height: 440px;
-  background: #f4f5f7;
-}
-body.view-poster .sec-chart .fig {
-  position: absolute;
-  left: 20px;
-  top: 18px;
-  width: 800px;
-  height: 371px;
-}
-body.view-poster .sec-chart .cap {
-  position: absolute;
-  left: 20px;
-  top: 397px;
-  width: 800px;
-  text-align: center;
-}
-
-/* Top-Right: Design Critique Box */
-body.view-poster .sec-critique {
-  left: 900px;
-  top: 164px;
-  width: 660px;
-  height: 440px;
   padding: 16px 20px;
+  height: 417px;
+  background: #fff;
+  border-radius: 0;
 }
-body.view-poster .sec-critique .text {
-  position: static;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 24px;
-  row-gap: 14px;
-  align-items: start;
-}
-
-/* Bottom-Left: Marks & Channels Box */
-body.view-poster .sec-mc {
-  left: 40px;
-  top: 620px;
-  width: 840px;
-  height: 260px;
-  padding: 14px 24px;
-}
-body.view-poster .sec-mc h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #222a34;
-  text-align: center;
-}
-body.view-poster .sec-mc .mcg {
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: 310px 430px;
-  column-gap: 40px;
-  justify-content: center;
-}
-
-/* Bottom-Right: Our Reanalysis Box */
-body.view-poster .sec-re {
-  left: 900px;
-  top: 620px;
-  width: 660px;
-  height: 260px;
+body.view-poster .panel.mc {
+  border: 1px solid #000;
+  box-sizing: border-box;
   padding: 14px 20px;
+  background: #fff;
+  height: 241px;
+  border-radius: 0;
 }
-body.view-poster .sec-re h3 {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #222a34;
-  text-align: center;
-}
-body.view-poster .sec-re .lead {
-  font-size: 12.5px;
-  line-height: 1.4;
-  margin: 0 0 6px;
-  text-align: center;
-}
-body.view-poster .sec-re svg {
-  display: block;
-  margin: 0 auto;
+body.view-poster .panel.re {
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 14px 20px;
+  background: #fff;
+  height: 241px;
+  border-radius: 0;
 }
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
@@ -329,17 +253,6 @@ body.view-adaptive .page > * {
   height: auto !important;
   box-sizing: border-box !important;
 }
-body.view-adaptive .sec-box {
-  position: static !important;
-  width: 100% !important;
-  height: auto !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}
 body.view-adaptive .chbg {
   display: none !important;
 }
@@ -347,12 +260,9 @@ body.view-adaptive .hero {
   order: 0 !important;
   background: #f6f7f8 !important;
   border-radius: 14px !important;
-  border: none !important;
   text-align: center !important;
   padding: 20px 16px 20px !important;
   margin-top: 16px !important;
-  box-sizing: border-box !important;
-}
   box-sizing: border-box !important;
 }
 body.view-adaptive .hero .view-picker {
@@ -387,39 +297,31 @@ body.view-adaptive .btns {
   flex-wrap: wrap !important;
   gap: 8px !important;
 }
-body.view-adaptive .sec-chart {
-  order: 1 !important;
-  margin-top: 24px !important;
-}
 body.view-adaptive .fig {
+  order: 1 !important;
   position: relative !important;
-  margin: 0 auto !important;
+  margin: 24px auto 0 !important;
   aspect-ratio: 3420 / 1585 !important;
   background: #f4f5f7 !important;
   border-radius: 10px !important;
-  border: none !important;
 }
 body.view-adaptive .fig img {
   mix-blend-mode: multiply !important;
 }
 body.view-adaptive .cap {
+  order: 2 !important;
   margin: 10px auto 0 !important;
   text-align: center !important;
   font: italic 400 12px Montserrat, sans-serif !important;
   color: #8a929c !important;
   line-height: 1.7 !important;
-  border: none !important;
-}
-body.view-adaptive .sec-critique {
-  order: 2 !important;
-  margin-top: 32px !important;
 }
 body.view-adaptive .text {
-  margin: 0 auto !important;
+  order: 3 !important;
+  margin: 32px auto 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 16px !important;
-  border: none !important;
 }
 body.view-adaptive .text > div:not(.it):not(.sh2) {
   display: none !important;
@@ -449,7 +351,6 @@ body.view-adaptive .it {
   display: grid !important;
   grid-template-columns: 34px 1fr !important;
   margin-bottom: 4px !important;
-  border: none !important;
 }
 body.view-adaptive .it h4 {
   font-size: 15px !important;
@@ -462,12 +363,11 @@ body.view-adaptive .it p {
   line-height: 1.5 !important;
   margin: 0 !important;
 }
-body.view-adaptive .sec-mc {
-  order: 3 !important;
+body.view-adaptive .panel.mc {
+  order: 4 !important;
   margin: 40px auto 0 !important;
-  border: none !important;
 }
-body.view-adaptive .sec-mc h3 {
+body.view-adaptive .panel.mc h3 {
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: center !important;
@@ -478,7 +378,6 @@ body.view-adaptive .mcg {
   display: grid !important;
   grid-template-columns: 1fr !important;
   row-gap: 20px !important;
-  border: none !important;
 }
 body.view-adaptive .cr,
 body.view-adaptive .cr.m {
@@ -487,18 +386,17 @@ body.view-adaptive .cr.m {
   min-height: 36px !important;
   font-size: 13.5px !important;
 }
-body.view-adaptive .sec-re {
-  order: 4 !important;
+body.view-adaptive .panel.re {
+  order: 5 !important;
   margin: 40px auto 0 !important;
-  border: none !important;
 }
-body.view-adaptive .sec-re h3 {
+body.view-adaptive .panel.re h3 {
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: center !important;
   margin: 0 0 8px !important;
 }
-body.view-adaptive .sec-re .lead {
+body.view-adaptive .panel.re .lead {
   text-align: center !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
@@ -506,14 +404,13 @@ body.view-adaptive .sec-re .lead {
   margin: 0 auto 16px !important;
   padding: 0 4px !important;
 }
-body.view-adaptive .sec-re svg {
+body.view-adaptive .re svg {
   width: 100% !important;
   height: auto !important;
   display: block !important;
   margin: 0 auto !important;
   background: #f4f5f7 !important;
   border-radius: 10px !important;
-  border: none !important;
 }
 
 @media screen and (max-width: 560px) {
@@ -711,10 +608,10 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 
-<div class="sec-box sec-chart">
-  <div class="fig">
-    <img src="metr_chart.png" alt="METR time horizon chart">
-    <svg class="ov" viewBox="0 0 3420 1585" preserveAspectRatio="none"><line x1="1820" y1="939" x2="3093" y2="452" stroke="#b42318" stroke-width="20" stroke-linecap="round" opacity="0.13"/>
+<div class="chbg" style="left:48px;top:190px;width:832px;height:417px"></div>
+<div class="fig">
+  <img src="metr_chart.png" alt="METR time horizon chart">
+  <svg class="ov" viewBox="0 0 3420 1585" preserveAspectRatio="none"><line x1="1820" y1="939" x2="3093" y2="452" stroke="#b42318" stroke-width="20" stroke-linecap="round" opacity="0.13"/>
 <rect x="150" y="290" width="196" height="1092" rx="14" fill="none" stroke="#2e7d32" stroke-width="4.5"/>
 <line x1="393" y1="668" x2="706" y2="668" stroke="#2e7d32" stroke-width="4.5" stroke-linecap="round"/>
 <rect x="362" y="182" width="2808" height="144" rx="4" fill="none" stroke="#2e7d32" stroke-width="4.5"/>
@@ -725,27 +622,11 @@ document.addEventListener('DOMContentLoaded', () => {
 <line x1="2912" y1="248" x2="3002" y2="248" stroke="#b42318" stroke-width="4.5"/>
 <line x1="3165" y1="649" x2="3095" y2="464" stroke="#b42318" stroke-width="4.5"/>
 <line x1="2313" y1="1003" x2="2313" y2="963" stroke="#b42318" stroke-width="4.5"/></svg>
-    <span class="tg s ch" style="left:7.251%;top:13.589%">S1</span><span class="tg s ch" style="left:22.393%;top:42.145%">S2</span><span class="tg s ch" style="left:68.129%;top:16.025%">S3</span><span class="tg w ch" style="left:83.396%;top:15.647%">W1</span><span class="tg w ch" style="left:92.544%;top:43.533%">W2</span><span class="tg w ch" style="left:74.323%;top:10.852%">W3</span><span class="tg w ch" style="left:67.632%;top:65.843%">W4</span>
-  </div>
-  <div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
+  <span class="tg s ch" style="left:7.251%;top:13.589%">S1</span><span class="tg s ch" style="left:22.393%;top:42.145%">S2</span><span class="tg s ch" style="left:68.129%;top:16.025%">S3</span><span class="tg w ch" style="left:83.396%;top:15.647%">W1</span><span class="tg w ch" style="left:92.544%;top:43.533%">W2</span><span class="tg w ch" style="left:74.323%;top:10.852%">W3</span><span class="tg w ch" style="left:67.632%;top:65.843%">W4</span>
 </div>
+<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 
-<div class="sec-box sec-critique">
-  <div class="text">
-    <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
-    <div class="it"><span class="tg in s">S1</span><div><h4>Log scale makes doubling a straight line</h4><p>Steady growth reads as a steady slope, through position on a common scale, the most accurate channel (L4). Ratios also fit Weber’s law (L4).</p></div></div><div class="it"><span class="tg in w">W1</span><div><h4>Uncertainty is drawn at 20% opacity</h4><p>Opus 4.6 reads as 12 h, yet its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (L5). <b>Fix:</b> solid CI bars.</p></div></div><div class="it"><span class="tg in s">S2</span><div><h4>Example tasks give the axis meaning</h4><p>“Train classifier” at about an hour turns minutes into kinds of work, a conceptual unit (data models, L2).</p></div></div><div class="it"><span class="tg in w">W2</span><div><h4>One straight line hides a bend</h4><p>Every frontier model since o3 sits above METR’s line. Continuity (L5) reads it as one pace. <b>Fix:</b> add the recent fit.</p></div></div><div class="it"><span class="tg in s">S3</span><div><h4>It marks where its data stops</h4><p>Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2).</p></div></div><div class="it"><span class="tg in w">W3</span><div><h4>“50%” carries the headline</h4><p>At 80% success Opus 4.6 drops from 12 h to 70 min, yet the threshold sits only in the title and a rotated label (L4). <b>Fix:</b> plot both.</p></div></div><div></div><div class="it"><span class="tg in w">W4</span><div><h4>Light and split dots go unexplained</h4><p>No key for light green, 10 of 26 models named, two models share one split dot (expressiveness, L2). <b>Fix:</b> key and jitter.</p></div></div>
-  </div>
-</div>
-
-<div class="sec-box sec-mc">
-  <h3>Marks and channels</h3>
-  <div class="mcg">
-    <div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><circle cx="15" cy="9" r="5" fill="#2e7d32"/></svg><span class="ln">Point</span><span class="lm">one AI model (26 in all)</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="15" y1="2" x2="15" y2="16" stroke="#a5c8a7" stroke-width="1.6"/><line x1="11" y1="2" x2="19" y2="2" stroke="#a5c8a7" stroke-width="1.6"/><line x1="11" y1="16" x2="19" y2="16" stroke="#a5c8a7" stroke-width="1.6"/></svg><span class="ln">Vertical line</span><span class="lm">95% bootstrap CI</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="2" y1="9" x2="28" y2="9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4 3"/></svg><span class="ln">Dashed line</span><span class="lm">METR’s exponential fit</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><defs><pattern id="h1" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#b9b9b9" stroke-width="1.4"/></pattern></defs><rect x="2" y="2" width="26" height="14" fill="url(#h1)" stroke="#cfcfcf"/></svg><span class="ln">Hatched area</span><span class="lm">above 16 h</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><text x="15" y="13.5" text-anchor="middle" font-size="12" font-weight="600" fill="#222a34">Aa</text></svg><span class="ln">Text</span><span class="lm">model and task names</span></div></div>
-    <div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="3" y1="13" x2="26" y2="13" stroke="#222a34" stroke-width="1.5"/><path d="M22 9.5 L27 13 L22 16.5" fill="none" stroke="#222a34" stroke-width="1.5"/></svg><span class="ln">x position</span><span class="lm">release date</span><span class="ty">Q interval</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="15" y1="16" x2="15" y2="2.5" stroke="#222a34" stroke-width="1.5"/><path d="M11.5 6 L15 1.5 L18.5 6" fill="none" stroke="#222a34" stroke-width="1.5"/></svg><span class="ln">y position, log</span><span class="lm">50% horizon (human min)</span><span class="ty">Q ratio</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="10" y1="12" x2="10" y2="16" stroke="#a5c8a7" stroke-width="2"/><line x1="20" y1="2" x2="20" y2="16" stroke="#a5c8a7" stroke-width="2"/></svg><span class="ln">Whisker length</span><span class="lm">width of the CI</span><span class="ty">Q ratio</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><circle cx="9" cy="9" r="5" fill="#2e7d32"/><circle cx="21" cy="9" r="5" fill="#a5c8a7"/></svg><span class="ln">Luminance</span><span class="lm">frontier at release or not</span><span class="ty">N</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><defs><pattern id="h2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#b9b9b9" stroke-width="1.4"/></pattern></defs><rect x="2" y="3" width="13" height="12" fill="url(#h2)" stroke="#cfcfcf"/><circle cx="22" cy="9" r="5" fill="#9e9e9e"/></svg><span class="ln">Gray hue, texture</span><span class="lm">beyond the 16 h ceiling</span><span class="ty">N</span></div></div>
-  </div>
-</div>
-
-<div class="sec-box sec-re">
+<div class="panel re">
   <h3>Our reanalysis</h3>
   <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>105 days</b> (METR: 188).</div>
   <svg viewBox="0 0 636 176" width="636" height="176" class="plot">
@@ -801,6 +682,18 @@ document.addEventListener('DOMContentLoaded', () => {
 <text x="482" y="60.4" class="el" fill="#2e7d32">METR’s trend</text>
 <text x="482" y="74.4" class="es">doubles every 188 days</text>
 </svg>
+</div>
+<div class="panel mc">
+  <h3>Marks and channels</h3>
+  <div class="mcg">
+    <div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><circle cx="15" cy="9" r="5" fill="#2e7d32"/></svg><span class="ln">Point</span><span class="lm">one AI model (26 in all)</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="15" y1="2" x2="15" y2="16" stroke="#a5c8a7" stroke-width="1.6"/><line x1="11" y1="2" x2="19" y2="2" stroke="#a5c8a7" stroke-width="1.6"/><line x1="11" y1="16" x2="19" y2="16" stroke="#a5c8a7" stroke-width="1.6"/></svg><span class="ln">Vertical line</span><span class="lm">95% bootstrap CI</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="2" y1="9" x2="28" y2="9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4 3"/></svg><span class="ln">Dashed line</span><span class="lm">METR’s exponential fit</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><defs><pattern id="h1" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#b9b9b9" stroke-width="1.4"/></pattern></defs><rect x="2" y="2" width="26" height="14" fill="url(#h1)" stroke="#cfcfcf"/></svg><span class="ln">Hatched area</span><span class="lm">above 16 h</span></div><div class="cr m"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><text x="15" y="13.5" text-anchor="middle" font-size="12" font-weight="600" fill="#222a34">Aa</text></svg><span class="ln">Text</span><span class="lm">model and task names</span></div></div>
+    <div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="3" y1="13" x2="26" y2="13" stroke="#222a34" stroke-width="1.5"/><path d="M22 9.5 L27 13 L22 16.5" fill="none" stroke="#222a34" stroke-width="1.5"/></svg><span class="ln">x position</span><span class="lm">release date</span><span class="ty">Q interval</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="15" y1="16" x2="15" y2="2.5" stroke="#222a34" stroke-width="1.5"/><path d="M11.5 6 L15 1.5 L18.5 6" fill="none" stroke="#222a34" stroke-width="1.5"/></svg><span class="ln">y position, log</span><span class="lm">50% horizon (human min)</span><span class="ty">Q ratio</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><line x1="10" y1="12" x2="10" y2="16" stroke="#a5c8a7" stroke-width="2"/><line x1="20" y1="2" x2="20" y2="16" stroke="#a5c8a7" stroke-width="2"/></svg><span class="ln">Whisker length</span><span class="lm">width of the CI</span><span class="ty">Q ratio</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><circle cx="9" cy="9" r="5" fill="#2e7d32"/><circle cx="21" cy="9" r="5" fill="#a5c8a7"/></svg><span class="ln">Luminance</span><span class="lm">frontier at release or not</span><span class="ty">N</span></div><div class="cr"><svg class="gl" viewBox="0 0 30 18" width="28" height="17"><defs><pattern id="h2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#b9b9b9" stroke-width="1.4"/></pattern></defs><rect x="2" y="3" width="13" height="12" fill="url(#h2)" stroke="#cfcfcf"/><circle cx="22" cy="9" r="5" fill="#9e9e9e"/></svg><span class="ln">Gray hue, texture</span><span class="lm">beyond the 16 h ceiling</span><span class="ty">N</span></div></div>
+  </div>
+</div>
+
+<div class="text">
+  <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
+  <div class="it"><span class="tg in s">S1</span><div><h4>Log scale makes doubling a straight line</h4><p>Steady growth reads as a steady slope, through position on a common scale, the most accurate channel (L4). Ratios also fit Weber’s law (L4).</p></div></div><div class="it"><span class="tg in w">W1</span><div><h4>Uncertainty is drawn at 20% opacity</h4><p>Opus 4.6 reads as 12 h, yet its 95% CI spans 5 to 61 h. Faint whiskers sink into the ground (L5). <b>Fix:</b> solid CI bars.</p></div></div><div class="it"><span class="tg in s">S2</span><div><h4>Example tasks give the axis meaning</h4><p>“Train classifier” at about an hour turns minutes into kinds of work, a conceptual unit (data models, L2).</p></div></div><div class="it"><span class="tg in w">W2</span><div><h4>One straight line hides a bend</h4><p>Every frontier model since o3 sits above METR’s line. Continuity (L5) reads it as one pace. <b>Fix:</b> add the recent fit.</p></div></div><div class="it"><span class="tg in s">S3</span><div><h4>It marks where its data stops</h4><p>Hatching and the gray Mythos dot pop out preattentively (L4), so the chart claims nothing its tasks cannot measure (expressiveness, L2).</p></div></div><div class="it"><span class="tg in w">W3</span><div><h4>“50%” carries the headline</h4><p>At 80% success Opus 4.6 drops from 12 h to 70 min, yet the threshold sits only in the title and a rotated label (L4). <b>Fix:</b> plot both.</p></div></div><div></div><div class="it"><span class="tg in w">W4</span><div><h4>Light and split dots go unexplained</h4><p>No key for light green, 10 of 26 models named, two models share one split dot (expressiveness, L2). <b>Fix:</b> key and jitter.</p></div></div>
 </div>
 
 </div>

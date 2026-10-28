@@ -346,114 +346,38 @@ body.view-poster .hero .view-picker {{
   right: 36px;
   z-index: 10;
 }}
-
-/* ---------------- Boxed sections for the poster ---------------- */
+/* Section boxes exclusively in poster mode */
 body.view-poster .hero {{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1600px;
-  background: {BAND};
-  text-align: center;
-  padding: 18px 0 16px;
   border-bottom: 1px solid #000;
 }}
-
-body.view-poster .sec-box {{
-  position: absolute;
+body.view-poster .chbg {{
+  border: 1px solid #000;
+  border-radius: 0;
+  box-sizing: border-box;
+}}
+body.view-poster .text {{
   border: 1px solid #000;
   box-sizing: border-box;
-  background: #fff;
-}}
-
-/* Top-Left: Original Chart Box */
-body.view-poster .sec-chart {{
-  left: 40px;
-  top: 164px;
-  width: 840px;
-  height: 440px;
-  background: #f4f5f7;
-}}
-body.view-poster .sec-chart .fig {{
-  position: absolute;
-  left: 20px;
-  top: 18px;
-  width: 800px;
-  height: {800 * IH / IW:.0f}px;
-}}
-body.view-poster .sec-chart .cap {{
-  position: absolute;
-  left: 20px;
-  top: {18 + 800 * IH / IW + 8:.0f}px;
-  width: 800px;
-  text-align: center;
-}}
-
-/* Top-Right: Design Critique Box */
-body.view-poster .sec-critique {{
-  left: 900px;
-  top: 164px;
-  width: 660px;
-  height: 440px;
   padding: 16px 20px;
+  height: {CHT + 46:.0f}px;
+  background: #fff;
+  border-radius: 0;
 }}
-body.view-poster .sec-critique .text {{
-  position: static;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 24px;
-  row-gap: 14px;
-  align-items: start;
-}}
-
-/* Bottom-Left: Marks & Channels Box */
-body.view-poster .sec-mc {{
-  left: 40px;
-  top: 620px;
-  width: 840px;
-  height: 260px;
-  padding: 14px 24px;
-}}
-body.view-poster .sec-mc h3 {{
-  margin: 0 0 6px;
-  font-size: 18px;
-  font-weight: 500;
-  color: {INK};
-  text-align: center;
-}}
-body.view-poster .sec-mc .mcg {{
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: 310px 430px;
-  column-gap: 40px;
-  justify-content: center;
-}}
-
-/* Bottom-Right: Our Reanalysis Box */
-body.view-poster .sec-re {{
-  left: 900px;
-  top: 620px;
-  width: 660px;
-  height: 260px;
+body.view-poster .panel.mc {{
+  border: 1px solid #000;
+  box-sizing: border-box;
   padding: 14px 20px;
+  background: #fff;
+  height: {900 - BOT - 20:.0f}px;
+  border-radius: 0;
 }}
-body.view-poster .sec-re h3 {{
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 500;
-  color: {INK};
-  text-align: center;
-}}
-body.view-poster .sec-re .lead {{
-  font-size: 12.5px;
-  line-height: 1.4;
-  margin: 0 0 6px;
-  text-align: center;
-}}
-body.view-poster .sec-re svg {{
-  display: block;
-  margin: 0 auto;
+body.view-poster .panel.re {{
+  border: 1px solid #000;
+  box-sizing: border-box;
+  padding: 14px 20px;
+  background: #fff;
+  height: {900 - BOT - 20:.0f}px;
+  border-radius: 0;
 }}
 
 /* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
@@ -498,17 +422,6 @@ body.view-adaptive .page > * {{
   height: auto !important;
   box-sizing: border-box !important;
 }}
-body.view-adaptive .sec-box {{
-  position: static !important;
-  width: 100% !important;
-  height: auto !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}}
 body.view-adaptive .chbg {{
   display: none !important;
 }}
@@ -516,12 +429,9 @@ body.view-adaptive .hero {{
   order: 0 !important;
   background: {BAND} !important;
   border-radius: 14px !important;
-  border: none !important;
   text-align: center !important;
   padding: 20px 16px 20px !important;
   margin-top: 16px !important;
-  box-sizing: border-box !important;
-}}
   box-sizing: border-box !important;
 }}
 body.view-adaptive .hero .view-picker {{
@@ -556,39 +466,31 @@ body.view-adaptive .btns {{
   flex-wrap: wrap !important;
   gap: 8px !important;
 }}
-body.view-adaptive .sec-chart {{
-  order: 1 !important;
-  margin-top: 24px !important;
-}}
 body.view-adaptive .fig {{
+  order: 1 !important;
   position: relative !important;
-  margin: 0 auto !important;
+  margin: 24px auto 0 !important;
   aspect-ratio: 3420 / 1585 !important;
   background: #f4f5f7 !important;
   border-radius: 10px !important;
-  border: none !important;
 }}
 body.view-adaptive .fig img {{
   mix-blend-mode: multiply !important;
 }}
 body.view-adaptive .cap {{
+  order: 2 !important;
   margin: 10px auto 0 !important;
   text-align: center !important;
   font: italic 400 12px Montserrat, sans-serif !important;
   color: {MUTED} !important;
   line-height: 1.7 !important;
-  border: none !important;
-}}
-body.view-adaptive .sec-critique {{
-  order: 2 !important;
-  margin-top: 32px !important;
 }}
 body.view-adaptive .text {{
-  margin: 0 auto !important;
+  order: 3 !important;
+  margin: 32px auto 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 16px !important;
-  border: none !important;
 }}
 body.view-adaptive .text > div:not(.it):not(.sh2) {{
   display: none !important;
@@ -618,7 +520,6 @@ body.view-adaptive .it {{
   display: grid !important;
   grid-template-columns: 34px 1fr !important;
   margin-bottom: 4px !important;
-  border: none !important;
 }}
 body.view-adaptive .it h4 {{
   font-size: 15px !important;
@@ -631,12 +532,11 @@ body.view-adaptive .it p {{
   line-height: 1.5 !important;
   margin: 0 !important;
 }}
-body.view-adaptive .sec-mc {{
-  order: 3 !important;
+body.view-adaptive .panel.mc {{
+  order: 4 !important;
   margin: 40px auto 0 !important;
-  border: none !important;
 }}
-body.view-adaptive .sec-mc h3 {{
+body.view-adaptive .panel.mc h3 {{
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: center !important;
@@ -647,7 +547,6 @@ body.view-adaptive .mcg {{
   display: grid !important;
   grid-template-columns: 1fr !important;
   row-gap: 20px !important;
-  border: none !important;
 }}
 body.view-adaptive .cr,
 body.view-adaptive .cr.m {{
@@ -656,18 +555,17 @@ body.view-adaptive .cr.m {{
   min-height: 36px !important;
   font-size: 13.5px !important;
 }}
-body.view-adaptive .sec-re {{
-  order: 4 !important;
+body.view-adaptive .panel.re {{
+  order: 5 !important;
   margin: 40px auto 0 !important;
-  border: none !important;
 }}
-body.view-adaptive .sec-re h3 {{
+body.view-adaptive .panel.re h3 {{
   font-size: 20px !important;
   font-weight: 600 !important;
   text-align: center !important;
   margin: 0 0 8px !important;
 }}
-body.view-adaptive .sec-re .lead {{
+body.view-adaptive .panel.re .lead {{
   text-align: center !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
@@ -675,14 +573,13 @@ body.view-adaptive .sec-re .lead {{
   margin: 0 auto 16px !important;
   padding: 0 4px !important;
 }}
-body.view-adaptive .sec-re svg {{
+body.view-adaptive .re svg {{
   width: 100% !important;
   height: auto !important;
   display: block !important;
   margin: 0 auto !important;
   background: #f4f5f7 !important;
   border-radius: 10px !important;
-  border: none !important;
 }}
 
 @media screen and (max-width: 560px) {{
@@ -880,23 +777,20 @@ document.addEventListener('DOMContentLoaded', () => {{
   </div>
 </div>
 
-<div class="sec-box sec-chart">
-  <div class="fig">
-    <img src="metr_chart.png" alt="METR time horizon chart">
-    <svg class="ov" viewBox="0 0 {IW} {IH}" preserveAspectRatio="none">{overlay}</svg>
-    {tags}
-  </div>
-  <div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
+<div class="chbg" style="left:{M}px;top:{CY - PAD}px;width:{CWID + 2 * PAD}px;height:{CHT + 46:.0f}px"></div>
+<div class="fig">
+  <img src="metr_chart.png" alt="METR time horizon chart">
+  <svg class="ov" viewBox="0 0 {IW} {IH}" preserveAspectRatio="none">{overlay}</svg>
+  {tags}
 </div>
+<div class="cap">METR, Time Horizon 1.1, 50% success, log scale. Our additions:<span class="k"><span class="tg in s">S</span>strength</span><span class="k"><span class="tg in w">W</span>weakness</span></div>
 
-<div class="sec-box sec-critique">
-  <div class="text">
-    <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
-    {ROWS}
-  </div>
+<div class="panel re">
+  <h3>Our reanalysis</h3>
+  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
+  {resid}
 </div>
-
-<div class="sec-box sec-mc">
+<div class="panel mc">
   <h3>Marks and channels</h3>
   <div class="mcg">
     <div>{MARKS_INLINE}</div>
@@ -904,10 +798,9 @@ document.addEventListener('DOMContentLoaded', () => {{
   </div>
 </div>
 
-<div class="sec-box sec-re">
-  <h3>Our reanalysis</h3>
-  <div class="lead">Since o3, every frontier model sits <b>above</b> METR’s line. A fit from 2024 on doubles every <b>{DAYS_NEW:.0f} days</b> (METR: {DAYS_ALL:.0f}).</div>
-  {resid}
+<div class="text">
+  <div class="sh2 s">Strengths</div><div class="sh2 w">Weaknesses</div>
+  {ROWS}
 </div>
 
 </div>
