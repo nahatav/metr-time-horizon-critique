@@ -171,18 +171,74 @@ html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>METR Time Horizon Critique</title>
+<meta name="description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
+
+<!-- Open Graph / Social Media Preview (Full Poster View) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nahatav.github.io/metr-time-horizon-critique/">
+<meta property="og:title" content="METR’s Time Horizon Chart Is Easy to Read, and Easy to Overread">
+<meta property="og:description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
+<meta property="og:image" content="https://nahatav.github.io/metr-time-horizon-critique/preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://nahatav.github.io/metr-time-horizon-critique/">
+<meta name="twitter:title" content="METR’s Time Horizon Chart Is Easy to Read, and Easy to Overread">
+<meta name="twitter:description" content="A one page design critique of METR's Time Horizon 1.1 chart with strengths, weaknesses, and reanalysis.">
+<meta name="twitter:image" content="https://nahatav.github.io/metr-time-horizon-critique/preview.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 @page {{ size:1280px 720px; margin:0; }}
 * {{ box-sizing:border-box; }}
 html,body {{ margin:0; background:#fff; }}
-@media screen {{ body {{ margin:0 auto; }} }}
 body {{ width:1280px; height:720px; overflow:hidden; color:{BODY};
         font-family:"Instrument Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
         -webkit-print-color-adjust:exact; print-color-adjust:exact; }}
+.poster-stage {{ width:100%; height:100%; display:flex; justify-content:center; align-items:flex-start; }}
 .page {{ position:relative; width:1600px; height:900px; zoom:0.8; }}
 
-.hero {{ position:absolute; left:0; top:0; width:1600px; background:{BAND}; text-align:center; padding:20px 0 20px; }}
+/* Seamlessly integrated layout toggle */
+.view-picker {{
+  display: inline-flex;
+  align-items: center;
+  background: #e6e8eb;
+  padding: 3px;
+  border-radius: 20px;
+  gap: 2px;
+}}
+.view-opt {{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: {BODY};
+  font-family: "Instrument Sans", -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 13px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}}
+.view-opt:hover {{
+  color: {INK};
+}}
+.view-opt.active {{
+  background: {SLATE};
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}}
+.view-opt svg {{
+  flex-shrink: 0;
+}}
+
+.hero {{ position:absolute; left:0; top:0; width:1600px; background:{BAND}; text-align:center; padding:18px 0 18px; }}
 h1 {{ margin:0; font-size:30px; font-weight:400; color:{INK}; letter-spacing:-0.3px; line-height:1.15; }}
 .authors {{ margin-top:8px; font-size:15px; color:{INK}; }}
 .authors span {{ margin:0 10px; }}
@@ -242,60 +298,407 @@ h1 {{ margin:0; font-size:30px; font-weight:400; color:{INK}; letter-spacing:-0.
 .gl {{ display:block; flex:none; }}
 .lbl {{ font-size:10.5px; font-weight:600; letter-spacing:1.1px; text-transform:uppercase; color:{MUTED}; margin:0 0 4px; }}
 
-/* ---------------- responsive: below 1100px the slide becomes a single flowing column ---------------- */
-@media screen and (max-width: 1099px) {{
-  html, body {{ background:#fff !important; }}
-  body {{ width:auto; height:auto; overflow:visible; zoom:1 !important; box-shadow:none; }}
-  .page {{ zoom:1; width:auto; height:auto; display:flex; flex-direction:column; padding:0 0 40px; }}
-  .page > * {{ position:static !important; left:auto !important; top:auto !important; width:auto !important; height:auto !important; }}
-  .chbg {{ display:none; }}
-  .hero {{ order:0; padding:28px 20px 24px; }}
-  h1 {{ font-size:clamp(22px, 5.4vw, 30px); line-height:1.2; }}
-  .authors span {{ display:inline-block; margin:2px 8px; }}
-  .affil {{ padding:0 8px; }}
-  .btns {{ flex-wrap:wrap; }}
-  .page > .fig {{ position:relative !important; }}
-  .fig {{ order:1; margin:24px 16px 0; aspect-ratio:3420 / 1585; background:#f4f5f7; border-radius:10px; }}
-  .fig img {{ mix-blend-mode:multiply; }}
-  .cap {{ order:2; margin:10px 20px 0; line-height:1.9; }}
-  .text {{ order:3; margin:32px 20px 0; display:flex !important; flex-direction:column; gap:16px; }}
-  .text > div:not(.it):not(.sh2) {{ display:none; }}
-  .text .sh2 {{ text-align:left; margin:0; font-size:21px; }}
-  .text .sh2.s {{ order:0; }}
-  .text .it:has(.tg.s) {{ order:1; }}
-  .text .sh2.w {{ order:2; margin-top:18px; }}
-  .text .it:has(.tg.w) {{ order:3; }}
-  .it h4 {{ font-size:16px; }}
-  .it p {{ font-size:15px; line-height:1.55; }}
-  .panel.mc {{ order:4; margin:44px 20px 0; }}
-  .panel.re {{ order:5; margin:44px 16px 0; }}
-  .panel h3 {{ font-size:21px; text-align:left; padding:0 4px; }}
-  .panel .lead {{ text-align:left; font-size:15px; padding:0 4px; margin-bottom:12px; }}
-  .re svg {{ width:100%; height:auto; }}
-  .mcg {{ margin-top:8px !important; grid-template-columns:1fr !important; row-gap:18px; }}
-  .cr, .cr.m {{ grid-template-columns:32px minmax(110px, 34%) 1fr auto !important; height:auto !important; min-height:36px; font-size:14px; }}
+/* ---------------- Poster layout mode (PC) ---------------- */
+body.view-poster {{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
 }}
+body.view-poster .poster-stage {{
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: auto;
+  position: relative;
+}}
+body.view-poster .page {{
+  position: absolute;
+  top: 0;
+  width: 1600px;
+  height: 900px;
+  zoom: 0.8;
+  transform-origin: top center;
+  flex-shrink: 0;
+}}
+body.view-poster .hero .view-picker {{
+  position: absolute;
+  top: 16px;
+  right: 36px;
+  z-index: 10;
+}}
+
+/* ---------------- Adaptive layout mode (centered, flowing) ---------------- */
+body.view-adaptive {{
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100vh;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  margin: 0 !important;
+  display: block !important;
+}}
+body.view-adaptive .poster-stage {{
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}}
+body.view-adaptive .page {{
+  position: static !important;
+  zoom: 1 !important;
+  width: 100% !important;
+  max-width: 680px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 16px 48px !important;
+  box-sizing: border-box !important;
+}}
+body.view-adaptive .page > * {{
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}}
+body.view-adaptive .chbg {{
+  display: none !important;
+}}
+body.view-adaptive .hero {{
+  order: 0 !important;
+  background: {BAND} !important;
+  border-radius: 14px !important;
+  text-align: center !important;
+  padding: 20px 16px 20px !important;
+  margin-top: 16px !important;
+  box-sizing: border-box !important;
+}}
+body.view-adaptive .hero .view-picker {{
+  display: inline-flex !important;
+  margin: 0 auto 16px !important;
+}}
+body.view-adaptive h1 {{
+  font-size: clamp(20px, 4.8vw, 27px) !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+  margin: 0 !important;
+}}
+body.view-adaptive .authors {{
+  text-align: center !important;
+  margin-top: 8px !important;
+  font-size: 14px !important;
+}}
+body.view-adaptive .authors span {{
+  display: inline-block !important;
+  margin: 2px 7px !important;
+}}
+body.view-adaptive .affil {{
+  text-align: center !important;
+  margin-top: 4px !important;
+  font-size: 12px !important;
+  padding: 0 4px !important;
+}}
+body.view-adaptive .btns {{
+  margin-top: 12px !important;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}}
+body.view-adaptive .fig {{
+  order: 1 !important;
+  position: relative !important;
+  margin: 24px auto 0 !important;
+  aspect-ratio: 3420 / 1585 !important;
+  background: #f4f5f7 !important;
+  border-radius: 10px !important;
+}}
+body.view-adaptive .fig img {{
+  mix-blend-mode: multiply !important;
+}}
+body.view-adaptive .cap {{
+  order: 2 !important;
+  margin: 10px auto 0 !important;
+  text-align: center !important;
+  font: italic 400 12px Montserrat, sans-serif !important;
+  color: {MUTED} !important;
+  line-height: 1.7 !important;
+}}
+body.view-adaptive .text {{
+  order: 3 !important;
+  margin: 32px auto 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}}
+body.view-adaptive .text > div:not(.it):not(.sh2) {{
+  display: none !important;
+}}
+body.view-adaptive .text .sh2 {{
+  text-align: center !important;
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}}
+body.view-adaptive .text .sh2.s {{
+  order: 0 !important;
+  color: {GREEN} !important;
+}}
+body.view-adaptive .text .it:has(.tg.s) {{
+  order: 1 !important;
+}}
+body.view-adaptive .text .sh2.w {{
+  order: 2 !important;
+  margin-top: 20px !important;
+  color: {WGREY} !important;
+}}
+body.view-adaptive .text .it:has(.tg.w) {{
+  order: 3 !important;
+}}
+body.view-adaptive .it {{
+  display: grid !important;
+  grid-template-columns: 34px 1fr !important;
+  margin-bottom: 4px !important;
+}}
+body.view-adaptive .it h4 {{
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  margin: 0 0 3px !important;
+  line-height: 1.3 !important;
+}}
+body.view-adaptive .it p {{
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}}
+body.view-adaptive .panel.mc {{
+  order: 4 !important;
+  margin: 40px auto 0 !important;
+}}
+body.view-adaptive .panel.mc h3 {{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  margin: 0 0 16px !important;
+}}
+body.view-adaptive .mcg {{
+  margin-top: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  row-gap: 20px !important;
+}}
+body.view-adaptive .cr,
+body.view-adaptive .cr.m {{
+  grid-template-columns: 32px minmax(110px, 32%) 1fr auto !important;
+  height: auto !important;
+  min-height: 36px !important;
+  font-size: 13.5px !important;
+}}
+body.view-adaptive .panel.re {{
+  order: 5 !important;
+  margin: 40px auto 0 !important;
+}}
+body.view-adaptive .panel.re h3 {{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  margin: 0 0 8px !important;
+}}
+body.view-adaptive .panel.re .lead {{
+  text-align: center !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  max-width: 580px !important;
+  margin: 0 auto 16px !important;
+  padding: 0 4px !important;
+}}
+body.view-adaptive .re svg {{
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  background: #f4f5f7 !important;
+  border-radius: 10px !important;
+}}
+
 @media screen and (max-width: 560px) {{
-  .cr, .cr.m {{ grid-template-columns:28px 1fr auto !important; row-gap:0; padding:6px 0; }}
-  .cr .lm {{ grid-column:2 / 4; grid-row:2; color:{MUTED}; font-size:13px; }}
-  .cr .ty {{ grid-column:3; grid-row:1; }}
-  .cap .k {{ margin-left:8px; }}
+  body.view-adaptive .cr,
+  body.view-adaptive .cr.m {{
+    grid-template-columns: 28px 1fr auto !important;
+    row-gap: 2px !important;
+    padding: 6px 0 !important;
+  }}
+  body.view-adaptive .cr .lm {{
+    grid-column: 2 / 4 !important;
+    grid-row: 2 !important;
+    color: {MUTED} !important;
+    font-size: 12.5px !important;
+  }}
+  body.view-adaptive .cr .ty {{
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }}
+  body.view-adaptive .cap .k {{
+    margin-left: 8px !important;
+  }}
+}}
+
+/* Print styles: strict poster page */
+@media print {{
+  .view-picker {{ display: none !important; }}
+  body {{
+    width: 1280px !important;
+    height: 720px !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    display: block !important;
+    background: #fff !important;
+  }}
+  .poster-stage {{
+    display: block !important;
+    width: 1280px !important;
+    height: 720px !important;
+  }}
+  .page {{
+    position: relative !important;
+    width: 1600px !important;
+    height: 900px !important;
+    zoom: 0.8 !important;
+  }}
 }}
 </style>
 <script>
-function fit() {{ if (matchMedia('print').matches) return;
-  if (innerWidth < 1100) {{ document.body.style.zoom = ''; document.documentElement.style.background = '#fff'; return; }}
-  const f = Math.min(innerWidth / 1280, innerHeight / 720);
-  document.body.style.zoom = f;
-  const h = document.querySelector('.hero').getBoundingClientRect().height * f;
-  document.documentElement.style.background = `#fff linear-gradient(#f6f7f8, #f6f7f8) no-repeat top / 100% ${{h}}px`;
-  document.documentElement.style.minHeight = '100vh'; }}
-addEventListener('resize', fit); addEventListener('DOMContentLoaded', fit);
+function fit() {{
+  if (matchMedia('print').matches) return;
+  const isPoster = document.body.classList.contains('view-poster');
+  const page = document.querySelector('.page');
+
+  if (!isPoster) {{
+    if (page) {{
+      page.style.zoom = '';
+      page.style.transform = '';
+    }}
+    document.documentElement.style.background = '#fff';
+    document.documentElement.style.minHeight = '100vh';
+    return;
+  }}
+
+  const availW = window.innerWidth;
+  const availH = window.innerHeight;
+
+  let scale = Math.min(availW / 1280, availH / 720);
+  if (availW < 768) {{
+    scale = availW / 1280;
+  }}
+
+  if (page) {{
+    page.style.zoom = 0.8 * scale;
+  }}
+
+  const hero = document.querySelector('.hero');
+  const heroH = hero ? hero.getBoundingClientRect().height * scale : 0;
+  document.documentElement.style.background = `#fff linear-gradient(#f6f7f8, #f6f7f8) no-repeat top / 100% ${{heroH}}px`;
+  document.documentElement.style.minHeight = '100vh';
+}}
+
+function setLayout(mode) {{
+  try {{ sessionStorage.setItem('critique_layout_pref', mode); }} catch(e) {{}}
+  applyLayout(mode);
+}}
+
+function applyLayout(mode) {{
+  const isPoster = (mode === 'poster');
+  document.body.classList.remove('view-adaptive', 'view-poster');
+  document.body.classList.add(isPoster ? 'view-poster' : 'view-adaptive');
+
+  const btnAdaptive = document.getElementById('opt-adaptive');
+  const btnPoster = document.getElementById('opt-poster');
+  if (btnAdaptive && btnPoster) {{
+    btnAdaptive.classList.toggle('active', !isPoster);
+    btnAdaptive.setAttribute('aria-checked', (!isPoster).toString());
+    btnPoster.classList.toggle('active', isPoster);
+    btnPoster.setAttribute('aria-checked', isPoster.toString());
+  }}
+
+  fit();
+}}
+
+function getInitialMode() {{
+  try {{
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view');
+    if (viewParam === 'poster' || viewParam === 'adaptive') return viewParam;
+    if (window.location.hash === '#poster') return 'poster';
+    if (window.location.hash === '#adaptive') return 'adaptive';
+    const pref = sessionStorage.getItem('critique_layout_pref');
+    if (pref === 'poster' || pref === 'adaptive') return pref;
+  }} catch(e) {{}}
+  return 'adaptive';
+}}
+
+window.addEventListener('resize', () => {{
+  fit();
+}});
+
+document.addEventListener('DOMContentLoaded', () => {{
+  applyLayout(getInitialMode());
+}});
 </script>
 </head>
-<body><div class="page">
+<body class="view-adaptive">
+<script>
+(function() {{
+  try {{
+    var params = new URLSearchParams(window.location.search);
+    var viewParam = params.get('view');
+    var mode = 'adaptive';
+    if (viewParam === 'poster' || viewParam === 'adaptive') {{
+      mode = viewParam;
+    }} else if (window.location.hash === '#poster') {{
+      mode = 'poster';
+    }} else if (window.location.hash === '#adaptive') {{
+      mode = 'adaptive';
+    }} else {{
+      var pref = sessionStorage.getItem('critique_layout_pref');
+      if (pref === 'poster' || pref === 'adaptive') mode = pref;
+    }}
+    document.body.className = 'view-' + mode;
+  }} catch(e) {{}}
+}})();
+</script>
+
+<div class="poster-stage">
+<div class="page">
 
 <div class="hero">
+  <div class="view-picker" role="radiogroup" aria-label="Layout view selection">
+    <button type="button" class="view-opt active" id="opt-adaptive" role="radio" aria-checked="true" onclick="setLayout('adaptive')">
+      <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="12" height="4" rx="1"/>
+        <rect x="2" y="8" width="5.5" height="6" rx="1"/>
+        <rect x="8.5" y="8" width="5.5" height="6" rx="1"/>
+      </svg>
+      <span>Adaptive</span>
+    </button>
+    <button type="button" class="view-opt" id="opt-poster" role="radio" aria-checked="false" onclick="setLayout('poster')">
+      <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1.5" y="2" width="13" height="9.5" rx="1.5"/>
+        <line x1="5.5" y1="14" x2="10.5" y2="14"/>
+        <line x1="8" y1="11.5" x2="8" y2="14"/>
+      </svg>
+      <span>Poster</span>
+    </button>
+  </div>
+
   <h1>METR’s Time Horizon Chart Is Easy to Read, and Easy to Overread</h1>
   <div class="authors"><span>Valmik Nahata</span><span>Varun Sinha</span><span>Rishab Kolan</span><span>Rishil Chintalapati</span></div>
   <div class="affil">UC San Diego, DSC 106 Project 2.5 &nbsp;·&nbsp; {{vnahata, v1sinha, rkolan, rchintalapati}}@ucsd.edu</div>
@@ -332,7 +735,9 @@ addEventListener('resize', fit); addEventListener('DOMContentLoaded', fit);
   {ROWS}
 </div>
 
-</div></body></html>
+</div>
+</div>
+</body></html>
 """
 open("index.html", "w", encoding="utf-8").write(html)
 print(f"chart bottom {CY + CHT:.0f}, panels top {BOT:.0f}")
