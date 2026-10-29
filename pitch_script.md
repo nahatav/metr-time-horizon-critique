@@ -1,48 +1,48 @@
-# METR Time Horizon Critique — 2-Minute Presentation Script
+# METR Time Horizon Critique — 2-Minute Presentation Script (With Lecture Explanations)
 
-**Presentation Time:** ~2:00 (approx. 290 words at 140 WPM)  
+**Presentation Time:** ~2:00 – 2:15 (approx. 330 words at 150 WPM)  
 **Deliverable:** 1-page PDF Poster ([METR_time_horizon_critique.pdf](file:///c:/Users/Valmi/Documents/antigravity/fervent-bose/METR_time_horizon_critique.pdf))  
 **Speakers:** Valmik Nahata, Varun Sinha, Rishab Kolan, Rishil Chintalapati  
 
 ---
 
-### [0:00 – 0:20] Introduction
-*(Point to the main METR chart on the top left)*
+### [0:00 – 0:20] Introduction & Setup
+*(👉 Point to the main METR chart on the top left)*
 
-"This is our design critique of METR’s Time Horizon chart, one of the most widely cited graphs in AI right now. Across the horizontal axis is release date, and up the vertical axis is the task duration an AI model can solve fifty percent of the time, measured in human expert work."
-
----
-
-### [0:20 – 0:40] Marks and Channels
-*(Point to the Marks and Channels cards under the chart)*
-
-"Looking at marks and channels: each point represents an AI model. Spatial position encodes release date as interval data and task duration as ratio data. Vertical whiskers show ninety-five percent bootstrap confidence intervals. The dashed line represents an exponential fit, and luminance distinguishes frontier models."
+"This is our design critique of METR’s Time Horizon chart, which tracks how long an AI model can autonomously work on a task before failing half the time. Across the bottom is release date, and up the side is task duration in human expert hours."
 
 ---
 
-### [0:40 – 1:05] Strengths (S1 to S3)
-*(Point to the green Strengths card)*
+### [0:20 – 0:35] Marks & Channels
+*(👉 Point to the Marks & Channels boxes on the bottom left)*
 
-"For strengths:  
-First, **S1**, the log scale makes exponential growth linear. Position on a common scale is our most accurate visual channel, and equal ratios get equal distances, matching Weber’s law.  
-Second, **S2**, benchmark task callouts like 'train classifier' near one hour map raw minutes onto a conceptual unit of meaningful work.  
-Third, **S3**, hatching and the gray Mythos dot pop out preattentively, respecting expressiveness by showing exactly where task measurement caps out."
+"For marks and channels: each point is an AI model. In **Lecture 4's** channel ranking, spatial position on a common scale is the most accurate channel—here encoding release date as an interval and task horizon as a ratio on a log scale."
 
 ---
 
-### [1:05 – 1:35] Weaknesses (W1 to W4)
-*(Point to the red Weaknesses card)*
+### [0:35 – 1:05] Strengths & Course Concepts (S1 to S3)
+*(👉 Point to the green Strengths card)*
 
-"For weaknesses:  
-**W1**, whiskers are drawn at twenty percent opacity. Opus 4.6 reads as twelve hours, but its interval spans five to sixty-one hours. Faint whiskers sink into the ground.  
-**W2**, like Anscombe’s quartet, one straight line hides critical structure. Gestalt continuity reads one steady pace, but every frontier model since o3 sits above the line.  
-**W3**, at eighty percent success, Opus 4.6 falls from twelve hours to seventy minutes, yet that choice is hidden in a rotated axis label.  
-**W4**, luminance is an ordered channel used for a nominal category without a legend, and six models share overlapping split dots."
+"We identified three core strengths grounded in lecture theory:  
+* **S1 connects to Lecture 4:** The log scale makes exponential doubling linear. This leverages **Weber’s law**, because human perception judges relative ratios much better than absolute values.  
+* **S2 connects to Lecture 2's Data Models:** The chart maps raw physical units—minutes—onto conceptual units of actual work, like *'train classifier'* at one hour, giving the axis concrete real-world meaning.  
+* **S3 connects to Lecture 4 and Lecture 2:** The hatching and gray Mythos dot pop out **preattentively** before conscious reading, respecting Mackinlay’s **Expressiveness principle** by making sure the visualization doesn't claim data where testing stops."
 
 ---
 
-### [1:35 – 2:00] Reanalysis and Takeaways
-*(Point to the Our Reanalysis plot on the bottom right)*
+### [1:05 – 1:40] Weaknesses & Course Concepts (W1 to W4)
+*(👉 Point to the red Weaknesses card)*
 
-"In our reanalysis on the bottom right, we refit METR’s published data. We reproduced their overall doubling time of 188 days. But fitting models from 2024 onward reveals a doubling time of just 105 days, nearly twice as fast.  
-Our proposed fixes are straightforward: draw solid error bars, display both fifty and eighty percent thresholds, and include a recent fit line. Thank you."
+"However, four design decisions violate key lecture principles:  
+* **W1 violates Lecture 5’s Figure and Ground:** Whiskers are drawn at twenty percent opacity, visually demoting vital uncertainty into the background. Opus 4.6 reads cleanly as twelve hours, even though its true ninety-five percent interval spans all the way from five to sixty-one hours.  
+* **W2 connects to Lecture 1 and Lecture 5:** Like **Anscombe’s quartet** in Lecture 1, a single regression line hides underlying structure. Gestalt **continuity** in Lecture 5 tricks the eye into reading one steady pace, even though every frontier model since o3 sits above the line.  
+* **W3 violates Lecture 4:** Flipping the threshold from fifty to eighty percent crashes Opus from twelve hours down to seventy minutes, yet that choice is buried in a rotated label requiring slow **attentive reading**.  
+* **W4 violates Lecture 2's Expressiveness:** Frontier status is nominal, but METR uses luminance—an ordered channel—without a legend, and six models are squished into split dots."
+
+---
+
+### [1:40 – 2:00] Reanalysis & Fixes
+*(👉 Point to the Our Reanalysis plot on the bottom right)*
+
+"In our reanalysis, we reproduced METR’s 188-day doubling line. But when you fit just the models from 2024 onward, doubling drops to **105 days**—nearly twice as fast.  
+Our fixes directly resolve these lecture violations: draw high-contrast error bars, plot both 50 and 80 percent thresholds, and show the recent trend. Thank you."
